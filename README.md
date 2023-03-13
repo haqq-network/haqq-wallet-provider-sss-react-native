@@ -2,5 +2,5 @@
 
 provider for working with multi party connection
 
-[docs](https://github.com/haqq-network/haqq-wallet-provider-mpc-react-native/blob/main/docs/modules.md)
+[docs](https://github.com/haqq-network/haqq-wallet-provider-sss-react-native/blob/main/docs/modules.md)
 

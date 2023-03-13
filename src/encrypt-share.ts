@@ -1,6 +1,6 @@
-import {hashPasswordToBN} from './hash-password-to-bn';
 import {ecCurve, ShareStore} from '@tkey/common-types';
 import {SecurityQuestionStore} from '@tkey/security-questions';
+import {hashPasswordToBN} from './hash-password-to-bn';
 
 export async function encryptShare(
   shareStore: ShareStore,
