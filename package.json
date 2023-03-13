@@ -1,6 +1,6 @@
 {
   "name": "@haqq/provider-mpc-react-native",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Provider for react-native ledger",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -13,6 +13,8 @@
     "build": "tsc",
     "format": "prettier --write \"src/**/*.ts\" \"src/**/*.js\"",
     "lint": "tslint -p tsconfig.json",
+    "typescript:check": "tsc",
+    "prettier:check": "prettier --check ./src",
     "typedoc": "typedoc"
   },
   "dependencies": {
@@ -26,7 +28,8 @@
     "@tkey/share-transfer": "8.0.0-alpha.0",
     "@tkey/storage-layer-torus": "8.0.0-alpha.0",
     "bn.js": "5.2.1",
-    "events": "3.3.0"
+    "events": "3.3.0",
+    "tslint-plugin-prettier": "^2.3.0"
   },
   "peerDependencies": {
     "@haqq/provider-base": "*",

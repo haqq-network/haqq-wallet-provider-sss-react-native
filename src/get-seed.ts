@@ -1,15 +1,15 @@
-import {StorageInterface} from './types';
+import {
+  generateMnemonicFromEntropy,
+  seedFromMnemonic,
+} from '@haqq/provider-web3-utils';
+import {ShareStore} from '@tkey/common-types';
+import {lagrangeInterpolation} from '@tkey/core';
+import {SecurityQuestionStore} from '@tkey/security-questions';
+import BN from 'bn.js';
 import EncryptedStorage from 'react-native-encrypted-storage';
 import {ITEM_KEY} from './constants';
 import {decryptShare} from './decrypt-share';
-import {SecurityQuestionStore} from '@tkey/security-questions';
-import {ShareStore} from '@tkey/common-types';
-import {lagrangeInterpolation} from '@tkey/core';
-import BN from 'bn.js';
-import {
-  generateMnemonicFromEntropy,
-  seedFromMnemonic
-} from '@haqq/provider-web3-utils';
+import {StorageInterface} from './types';
 
 export async function getSeed(
   account: string,
