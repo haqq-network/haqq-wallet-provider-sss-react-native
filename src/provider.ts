@@ -1,14 +1,14 @@
 import {hexConcat} from '@ethersproject/bytes';
 import {serialize, UnsignedTransaction} from '@ethersproject/transactions';
 import {
-  BytesLike,
   compressPublicKey,
   hexStringToByteArray,
   joinSignature,
+  stringToUtf8Bytes,
+  BytesLike,
   Provider,
   ProviderBaseOptions,
   ProviderInterface,
-  stringToUtf8Bytes,
   TransactionRequest,
 } from '@haqq/provider-base';
 import {
