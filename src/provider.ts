@@ -1,44 +1,46 @@
+import {hexConcat} from '@ethersproject/bytes';
+import {serialize, UnsignedTransaction} from '@ethersproject/transactions';
 import {
-  BytesLike,
   compressPublicKey,
   hexStringToByteArray,
   joinSignature,
+  stringToUtf8Bytes,
+  BytesLike,
   Provider,
   ProviderBaseOptions,
   ProviderInterface,
-  stringToUtf8Bytes,
   TransactionRequest
 } from '@haqq/provider-base';
-import {ProviderMpcOptions, StorageInterface} from './types';
-import ThresholdKey from '@tkey/core';
-import ServiceProvider from '@tkey/service-provider-base';
-import TorusStorageLayer from '@tkey/storage-layer-torus';
-import {
-  ServiceProviderArgs,
-  ShareStore,
-  TorusStorageLayerArgs
-} from '@tkey/common-types';
-import {ShareTransferModule} from '@tkey/share-transfer';
-import {ShareSerializationModule} from '@tkey/share-serialization';
-import SecurityQuestionsModule, {
-  SecurityQuestionStore
-} from '@tkey/security-questions';
-import BN from 'bn.js';
 import {
   accountInfo,
   derive,
   generateEntropy,
   sign
 } from '@haqq/provider-web3-utils';
+import {
+  ServiceProviderArgs,
+  ShareStore,
+  TorusStorageLayerArgs
+} from '@tkey/common-types';
+import ThresholdKey from '@tkey/core';
+import SecurityQuestionsModule, {
+  SecurityQuestionStore
+} from '@tkey/security-questions';
+import ServiceProvider from '@tkey/service-provider-base';
+import {ShareSerializationModule} from '@tkey/share-serialization';
+import {ShareTransferModule} from '@tkey/share-transfer';
+import TorusStorageLayer from '@tkey/storage-layer-torus';
+import BN from 'bn.js';
 import EncryptedStorage from 'react-native-encrypted-storage';
 import {ITEM_KEY} from './constants';
+import {decryptShare} from './decrypt-share';
 import {encryptShare} from './encrypt-share';
 import {getSeed} from './get-seed';
-import {decryptShare} from './decrypt-share';
-import {hexConcat} from '@ethersproject/bytes';
-import {serialize, UnsignedTransaction} from '@ethersproject/transactions';
+import {ProviderMpcOptions, StorageInterface} from './types';
 
-export class ProviderMpcReactNative extends Provider<ProviderMpcOptions> implements ProviderInterface {
+export class ProviderMpcReactNative
+  extends Provider<ProviderMpcOptions>
+  implements ProviderInterface {
   static async initialize(
     web3privateKey: string,
     questionAnswer: string | null,
@@ -61,11 +63,11 @@ export class ProviderMpcReactNative extends Provider<ProviderMpcOptions> impleme
     const securityQuestionsModule = new SecurityQuestionsModule();
 
     const tKey = new ThresholdKey({
-      serviceProvider: serviceProvider,
+      serviceProvider,
       storageLayer,
       modules: {
         shareTransfer: shareTransferModule,
-        shareSerializationModule: shareSerializationModule,
+        shareSerializationModule,
         securityQuestions: securityQuestionsModule,
       },
     });
@@ -132,14 +134,7 @@ export class ProviderMpcReactNative extends Provider<ProviderMpcOptions> impleme
     );
 
     if (stored) {
-      const storages = await ProviderMpcReactNative.getStoragesForAccount(
-        address.toLowerCase(),
-      );
-
-      await EncryptedStorage.setItem(
-        `${ITEM_KEY}_storages_${address.toLowerCase()}`,
-        JSON.stringify(storages.concat(storage.getName())),
-      );
+      await ProviderMpcReactNative.setStorageForAccount(address.toLowerCase(), storage);
     }
 
     const pass = await getPassword();
@@ -183,6 +178,19 @@ export class ProviderMpcReactNative extends Provider<ProviderMpcOptions> impleme
       `${ITEM_KEY}_storages_${accountId}`,
     );
     return JSON.parse(storageKeys ?? '[]');
+  }
+
+  static async setStorageForAccount(accountId: string, storage: StorageInterface): Promise<string[]> {
+    const storages = await ProviderMpcReactNative.getStoragesForAccount(accountId)
+
+    if (!storages.includes(storage.getName())) {
+      await EncryptedStorage.setItem(
+        `${ITEM_KEY}_storages_${accountId.toLowerCase()}`,
+        JSON.stringify(storages.concat(storage.getName())),
+      );
+    }
+
+    return storages
   }
 
   getIdentifier() {
@@ -370,12 +378,14 @@ export class ProviderMpcReactNative extends Provider<ProviderMpcOptions> impleme
 
   async isShareSaved(storage?: StorageInterface): Promise<boolean> {
     const store = storage ?? this._options.storage;
+
     const item = await store.getItem(`haqq_${this._options.account}`);
 
     if (!item) {
       return false;
     }
-    let shareLocal = await EncryptedStorage.getItem(
+
+    const shareLocal = await EncryptedStorage.getItem(
       `${ITEM_KEY}_${this._options.account}`,
     );
     if (!shareLocal) {
@@ -391,24 +401,38 @@ export class ProviderMpcReactNative extends Provider<ProviderMpcOptions> impleme
 
     const share = JSON.parse(item);
 
-    return share.polynomialID && share.polynomialID === localShare.polynomialID;
+    if (share.polynomialID && share.polynomialID !== localShare.polynomialID) {
+      return false
+    }
+
+    await ProviderMpcReactNative.setStorageForAccount(this._options.account.toLowerCase(), store);
+
+    return true
   }
 
   async tryToSaveShareToStore(storage: StorageInterface) {
-    let shareTmp = await this._options.storage.getItem(
+    const shareTmp = await this._options.storage.getItem(
       `haqq_${this._options.account}`,
     );
 
-    if (shareTmp) {
-      await storage.setItem(`haqq_${this._options.account}`, shareTmp);
+    if (!shareTmp) {
+      return
+    }
 
-      const file = await this._options.storage.getItem(
-        `haqq_${this._options.account}`,
-      );
+    const saved = await storage.setItem(`haqq_${this._options.account}`, shareTmp);
 
-      if (file === shareTmp && this._options.storage.getName() === 'local') {
-        await this._options.storage.removeItem(`haqq_${this._options.account}`);
-      }
+    if (!saved) {
+      return
+    }
+
+    await ProviderMpcReactNative.setStorageForAccount(this._options.account.toLowerCase(), this._options.storage);
+
+    const file = await this._options.storage.getItem(
+      `haqq_${this._options.account}`,
+    );
+
+    if (file === shareTmp && this._options.storage.getName() === 'local') {
+      await this._options.storage.removeItem(`haqq_${this._options.account}`);
     }
   }
 }
