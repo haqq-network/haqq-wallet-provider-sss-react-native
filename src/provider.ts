@@ -34,8 +34,7 @@ import {ProviderMpcOptions, StorageInterface} from './types';
 
 export class ProviderMpcReactNative
   extends Provider<ProviderMpcOptions>
-  implements ProviderInterface
-{
+  implements ProviderInterface {
   static async initialize(
     web3privateKey: string,
     questionAnswer: string | null,
@@ -114,14 +113,7 @@ export class ProviderMpcReactNative
     );
 
     if (stored) {
-      const storages = await ProviderMpcReactNative.getStoragesForAccount(
-        address.toLowerCase(),
-      );
-
-      await EncryptedStorage.setItem(
-        `${ITEM_KEY}_storages_${address.toLowerCase()}`,
-        JSON.stringify(storages.concat(storage.getName())),
-      );
+      await ProviderMpcReactNative.setStorageForAccount(address.toLowerCase(), storage);
     }
 
     const pass = await getPassword();
@@ -165,6 +157,19 @@ export class ProviderMpcReactNative
       `${ITEM_KEY}_storages_${accountId}`,
     );
     return JSON.parse(storageKeys ?? '[]');
+  }
+
+  static async setStorageForAccount(accountId: string, storage: StorageInterface): Promise<string[]> {
+    const storages = await ProviderMpcReactNative.getStoragesForAccount(accountId)
+
+    if (!storages.includes(storage.getName())) {
+      await EncryptedStorage.setItem(
+        `${ITEM_KEY}_storages_${accountId.toLowerCase()}`,
+        JSON.stringify(storages.concat(storage.getName())),
+      );
+    }
+
+    return storages
   }
 
   getIdentifier() {
@@ -373,7 +378,13 @@ export class ProviderMpcReactNative
 
     const share = JSON.parse(item);
 
-    return share.polynomialID && share.polynomialID === localShare.polynomialID;
+    if (share.polynomialID && share.polynomialID !== localShare.polynomialID) {
+      return false
+    }
+
+    await ProviderMpcReactNative.setStorageForAccount(this._options.account.toLowerCase(), store);
+
+    return true
   }
 
   async tryToSaveShareToStore(storage: StorageInterface) {
@@ -381,16 +392,24 @@ export class ProviderMpcReactNative
       `haqq_${this._options.account}`,
     );
 
-    if (shareTmp) {
-      await storage.setItem(`haqq_${this._options.account}`, shareTmp);
+    if (!shareTmp) {
+      return
+    }
 
-      const file = await this._options.storage.getItem(
-        `haqq_${this._options.account}`,
-      );
+    const saved = await storage.setItem(`haqq_${this._options.account}`, shareTmp);
 
-      if (file === shareTmp && this._options.storage.getName() === 'local') {
-        await this._options.storage.removeItem(`haqq_${this._options.account}`);
-      }
+    if (!saved) {
+      return
+    }
+
+    await ProviderMpcReactNative.setStorageForAccount(this._options.account.toLowerCase(), this._options.storage);
+
+    const file = await this._options.storage.getItem(
+      `haqq_${this._options.account}`,
+    );
+
+    if (file === shareTmp && this._options.storage.getName() === 'local') {
+      await this._options.storage.removeItem(`haqq_${this._options.account}`);
     }
   }
 }
