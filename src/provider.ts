@@ -34,7 +34,8 @@ import {ProviderMpcOptions, StorageInterface} from './types';
 
 export class ProviderMpcReactNative
   extends Provider<ProviderMpcOptions>
-  implements ProviderInterface {
+  implements ProviderInterface
+{
   static async initialize(
     web3privateKey: string,
     questionAnswer: string | null,
@@ -113,7 +114,10 @@ export class ProviderMpcReactNative
     );
 
     if (stored) {
-      await ProviderMpcReactNative.setStorageForAccount(address.toLowerCase(), storage);
+      await ProviderMpcReactNative.setStorageForAccount(
+        address.toLowerCase(),
+        storage,
+      );
     }
 
     const pass = await getPassword();
@@ -159,8 +163,13 @@ export class ProviderMpcReactNative
     return JSON.parse(storageKeys ?? '[]');
   }
 
-  static async setStorageForAccount(accountId: string, storage: StorageInterface): Promise<string[]> {
-    const storages = await ProviderMpcReactNative.getStoragesForAccount(accountId)
+  static async setStorageForAccount(
+    accountId: string,
+    storage: StorageInterface,
+  ): Promise<string[]> {
+    const storages = await ProviderMpcReactNative.getStoragesForAccount(
+      accountId,
+    );
 
     if (!storages.includes(storage.getName())) {
       await EncryptedStorage.setItem(
@@ -169,7 +178,7 @@ export class ProviderMpcReactNative
       );
     }
 
-    return storages
+    return storages;
   }
 
   getIdentifier() {
@@ -379,12 +388,15 @@ export class ProviderMpcReactNative
     const share = JSON.parse(item);
 
     if (share.polynomialID && share.polynomialID !== localShare.polynomialID) {
-      return false
+      return false;
     }
 
-    await ProviderMpcReactNative.setStorageForAccount(this._options.account.toLowerCase(), store);
+    await ProviderMpcReactNative.setStorageForAccount(
+      this._options.account.toLowerCase(),
+      store,
+    );
 
-    return true
+    return true;
   }
 
   async tryToSaveShareToStore(storage: StorageInterface) {
@@ -393,16 +405,22 @@ export class ProviderMpcReactNative
     );
 
     if (!shareTmp) {
-      return
+      return;
     }
 
-    const saved = await storage.setItem(`haqq_${this._options.account}`, shareTmp);
+    const saved = await storage.setItem(
+      `haqq_${this._options.account}`,
+      shareTmp,
+    );
 
     if (!saved) {
-      return
+      return;
     }
 
-    await ProviderMpcReactNative.setStorageForAccount(this._options.account.toLowerCase(), this._options.storage);
+    await ProviderMpcReactNative.setStorageForAccount(
+      this._options.account.toLowerCase(),
+      this._options.storage,
+    );
 
     const file = await this._options.storage.getItem(
       `haqq_${this._options.account}`,
