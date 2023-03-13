@@ -1,1 +1,1 @@
-export const ITEM_KEY = 'mpc'
+export const ITEM_KEY = 'mpc';

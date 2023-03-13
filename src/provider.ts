@@ -1,44 +1,41 @@
+import {hexConcat} from '@ethersproject/bytes';
+import {serialize, UnsignedTransaction} from '@ethersproject/transactions';
 import {
-  BytesLike,
   compressPublicKey,
   hexStringToByteArray,
   joinSignature,
+  stringToUtf8Bytes,
+  BytesLike,
   Provider,
   ProviderBaseOptions,
   ProviderInterface,
-  stringToUtf8Bytes,
-  TransactionRequest
+  TransactionRequest,
 } from '@haqq/provider-base';
-import {ProviderMpcOptions, StorageInterface} from './types';
-import ThresholdKey from '@tkey/core';
-import ServiceProvider from '@tkey/service-provider-base';
-import TorusStorageLayer from '@tkey/storage-layer-torus';
-import {
-  ServiceProviderArgs,
-  ShareStore,
-  TorusStorageLayerArgs
-} from '@tkey/common-types';
-import {ShareTransferModule} from '@tkey/share-transfer';
-import {ShareSerializationModule} from '@tkey/share-serialization';
-import SecurityQuestionsModule, {
-  SecurityQuestionStore
-} from '@tkey/security-questions';
-import BN from 'bn.js';
 import {
   accountInfo,
   derive,
   generateEntropy,
-  sign
+  sign,
 } from '@haqq/provider-web3-utils';
+import {
+  ServiceProviderArgs,
+  ShareStore,
+  TorusStorageLayerArgs,
+} from '@tkey/common-types';
+import {SecurityQuestionStore} from '@tkey/security-questions';
+import BN from 'bn.js';
 import EncryptedStorage from 'react-native-encrypted-storage';
 import {ITEM_KEY} from './constants';
+import {decryptShare} from './decrypt-share';
 import {encryptShare} from './encrypt-share';
 import {getSeed} from './get-seed';
-import {decryptShare} from './decrypt-share';
-import {hexConcat} from '@ethersproject/bytes';
-import {serialize, UnsignedTransaction} from '@ethersproject/transactions';
+import {initializeTKey} from './initialize-tkey';
+import {ProviderMpcOptions, StorageInterface} from './types';
 
-export class ProviderMpcReactNative extends Provider<ProviderMpcOptions> implements ProviderInterface {
+export class ProviderMpcReactNative
+  extends Provider<ProviderMpcOptions>
+  implements ProviderInterface
+{
   static async initialize(
     web3privateKey: string,
     questionAnswer: string | null,
@@ -52,26 +49,11 @@ export class ProviderMpcReactNative extends Provider<ProviderMpcOptions> impleme
   ): Promise<ProviderMpcReactNative> {
     let password = questionAnswer;
 
-    const serviceProvider = new ServiceProvider(serviceProviderOptions);
-
-    const storageLayer = new TorusStorageLayer(storageOptions);
-
-    const shareTransferModule = new ShareTransferModule();
-    const shareSerializationModule = new ShareSerializationModule();
-    const securityQuestionsModule = new SecurityQuestionsModule();
-
-    const tKey = new ThresholdKey({
-      serviceProvider: serviceProvider,
-      storageLayer,
-      modules: {
-        shareTransfer: shareTransferModule,
-        shareSerializationModule: shareSerializationModule,
-        securityQuestions: securityQuestionsModule,
-      },
-    });
-
-    tKey.serviceProvider.postboxKey = new BN(web3privateKey, 16);
-    await tKey.initialize();
+    const {tKey, securityQuestionsModule} = await initializeTKey(
+      web3privateKey,
+      serviceProviderOptions,
+      storageOptions,
+    );
 
     if (!questionAnswer && !cloudShare) {
       const bytes = privateKey
@@ -375,7 +357,7 @@ export class ProviderMpcReactNative extends Provider<ProviderMpcOptions> impleme
     if (!item) {
       return false;
     }
-    let shareLocal = await EncryptedStorage.getItem(
+    const shareLocal = await EncryptedStorage.getItem(
       `${ITEM_KEY}_${this._options.account}`,
     );
     if (!shareLocal) {
@@ -395,7 +377,7 @@ export class ProviderMpcReactNative extends Provider<ProviderMpcOptions> impleme
   }
 
   async tryToSaveShareToStore(storage: StorageInterface) {
-    let shareTmp = await this._options.storage.getItem(
+    const shareTmp = await this._options.storage.getItem(
       `haqq_${this._options.account}`,
     );
 
