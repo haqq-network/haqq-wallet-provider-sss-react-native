@@ -1,14 +1,14 @@
 import {hexConcat} from '@ethersproject/bytes';
 import {serialize, UnsignedTransaction} from '@ethersproject/transactions';
 import {
+  BytesLike,
   compressPublicKey,
   hexStringToByteArray,
   joinSignature,
-  stringToUtf8Bytes,
-  BytesLike,
   Provider,
   ProviderBaseOptions,
   ProviderInterface,
+  stringToUtf8Bytes,
   TransactionRequest,
 } from '@haqq/provider-base';
 import {
@@ -34,8 +34,7 @@ import {ProviderMpcOptions, StorageInterface} from './types';
 
 export class ProviderMpcReactNative
   extends Provider<ProviderMpcOptions>
-  implements ProviderInterface
-{
+  implements ProviderInterface {
   static async initialize(
     web3privateKey: string,
     questionAnswer: string | null,
@@ -90,27 +89,20 @@ export class ProviderMpcReactNative
 
     const {address} = await accountInfo(web3privateKey.padStart(64, '0'));
 
-    while (tKey.getAllShareStoresForLatestPolynomial().length < 5) {
+    while (tKey.getAllShareStoresForLatestPolynomial().length < 3) {
       await tKey.generateNewShare();
     }
 
     const rootShareIndex = new BN(1);
 
-    const applicants = tKey
+    const [cShare, deviceShare] = tKey
       .getAllShareStoresForLatestPolynomial()
       .filter(s => s.share.shareIndex !== rootShareIndex)
-      .map(s => ({
-        key: Math.random(),
-        share: s,
-      }));
-
-    applicants.sort((a, b) => a.key - b.key);
-
-    const [cShare, deviceShare] = applicants;
+      .sort((a, b) => a.share.share.cmp(b.share.share));
 
     const stored = await storage.setItem(
       `haqq_${address.toLowerCase()}`,
-      JSON.stringify(cShare.share),
+      JSON.stringify(cShare),
     );
 
     if (stored) {
@@ -123,7 +115,7 @@ export class ProviderMpcReactNative
     const pass = await getPassword();
 
     const sqStore = await encryptShare(
-      ShareStore.fromJSON(deviceShare.share),
+      ShareStore.fromJSON(deviceShare),
       pass,
     );
 
