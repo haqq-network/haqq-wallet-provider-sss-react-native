@@ -1,0 +1,15 @@
+.DS_Store
+
+build/
+.idea
+.gradle
+local.properties
+*.iml
+*.hprof
+
+node_modules/
+npm-debug.log
+yarn-error.log
+.npmrc
+
+.github
