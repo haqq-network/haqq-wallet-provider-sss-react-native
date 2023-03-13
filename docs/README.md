@@ -1,7 +1,7 @@
-@haqq/provider-mpc-react-native - v0.0.1 / [Exports](modules.md)
+@haqq/provider-mpc-react-native - v0.0.2 / [Exports](modules.md)
 
-# Provider for ledger react-native
+# Provider for multi party connection on react-native platform
 
-Provider for working with ledger
+provider for working with multi party connection
 
-[docs](https://github.com/haqq-network/haqq-wallet-provider-ledger-react-native/blob/main/docs/modules.md)
+[docs](https://github.com/haqq-network/haqq-wallet-provider-mpc-react-native/blob/main/docs/modules.md)

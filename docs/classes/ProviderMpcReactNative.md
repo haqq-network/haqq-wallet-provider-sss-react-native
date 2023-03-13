@@ -1,10 +1,10 @@
-[@haqq/provider-mpc-react-native - v0.0.1](../README.md) / [Exports](../modules.md) / ProviderMpcReactNative
+[@haqq/provider-mpc-react-native - v0.0.2](../README.md) / [Exports](../modules.md) / ProviderMpcReactNative
 
 # Class: ProviderMpcReactNative
 
 ## Hierarchy
 
-- `Provider`<`ProviderMpcOptions`\>
+- `Provider`<[`ProviderMpcOptions`](../modules.md#providermpcoptions)\>
 
   ↳ **`ProviderMpcReactNative`**
 
@@ -74,7 +74,7 @@
 
 | Name | Type |
 | :------ | :------ |
-| `options` | `ProviderMpcOptions` & `ProviderBaseOptions` |
+| `options` | [`ProviderMpcOptions`](../modules.md#providermpcoptions) & `ProviderBaseOptions` |
 
 #### Inherited from
 
@@ -88,7 +88,7 @@ node_modules/@haqq/provider-base/dist/provider.d.ts:6
 
 ### \_options
 
-• `Protected` **\_options**: `ProviderMpcOptions` & `ProviderBaseOptions`
+• `Protected` **\_options**: [`ProviderMpcOptions`](../modules.md#providermpcoptions) & `ProviderBaseOptions`
 
 #### Inherited from
 
@@ -407,7 +407,7 @@ Provider.getAccountInfo
 
 #### Defined in
 
-src/provider.ts:192
+[src/provider.ts:174](https://github.com/haqq-network/haqq-wallet-provider-mpc-react-native/blob/120ddee/src/provider.ts#L174)
 
 ___
 
@@ -429,7 +429,7 @@ Provider.getIdentifier
 
 #### Defined in
 
-src/provider.ts:188
+[src/provider.ts:170](https://github.com/haqq-network/haqq-wallet-provider-mpc-react-native/blob/120ddee/src/provider.ts#L170)
 
 ___
 
@@ -498,7 +498,7 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `storage?` | `StorageInterface` |
+| `storage?` | [`StorageInterface`](../interfaces/StorageInterface.md) |
 
 #### Returns
 
@@ -506,7 +506,7 @@ ___
 
 #### Defined in
 
-src/provider.ts:371
+[src/provider.ts:353](https://github.com/haqq-network/haqq-wallet-provider-mpc-react-native/blob/120ddee/src/provider.ts#L353)
 
 ___
 
@@ -1100,7 +1100,7 @@ Provider.signPersonalMessage
 
 #### Defined in
 
-src/provider.ts:267
+[src/provider.ts:249](https://github.com/haqq-network/haqq-wallet-provider-mpc-react-native/blob/120ddee/src/provider.ts#L249)
 
 ___
 
@@ -1129,7 +1129,7 @@ Provider.signTransaction
 
 #### Defined in
 
-src/provider.ts:226
+[src/provider.ts:208](https://github.com/haqq-network/haqq-wallet-provider-mpc-react-native/blob/120ddee/src/provider.ts#L208)
 
 ___
 
@@ -1159,7 +1159,7 @@ Provider.signTypedData
 
 #### Defined in
 
-src/provider.ts:310
+[src/provider.ts:292](https://github.com/haqq-network/haqq-wallet-provider-mpc-react-native/blob/120ddee/src/provider.ts#L292)
 
 ___
 
@@ -1171,7 +1171,7 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `storage` | `StorageInterface` |
+| `storage` | [`StorageInterface`](../interfaces/StorageInterface.md) |
 
 #### Returns
 
@@ -1179,7 +1179,7 @@ ___
 
 #### Defined in
 
-src/provider.ts:397
+[src/provider.ts:379](https://github.com/haqq-network/haqq-wallet-provider-mpc-react-native/blob/120ddee/src/provider.ts#L379)
 
 ___
 
@@ -1207,7 +1207,7 @@ Provider.updatePin
 
 #### Defined in
 
-src/provider.ts:345
+[src/provider.ts:327](https://github.com/haqq-network/haqq-wallet-provider-mpc-react-native/blob/120ddee/src/provider.ts#L327)
 
 ___
 
@@ -1221,7 +1221,7 @@ ___
 
 #### Defined in
 
-src/provider.ts:172
+[src/provider.ts:154](https://github.com/haqq-network/haqq-wallet-provider-mpc-react-native/blob/120ddee/src/provider.ts#L154)
 
 ___
 
@@ -1295,7 +1295,7 @@ ___
 
 #### Defined in
 
-src/provider.ts:178
+[src/provider.ts:160](https://github.com/haqq-network/haqq-wallet-provider-mpc-react-native/blob/120ddee/src/provider.ts#L160)
 
 ___
 
@@ -1312,7 +1312,7 @@ ___
 | `cloudShare` | ``null`` \| `string` |
 | `privateKey` | ``null`` \| `string` |
 | `getPassword` | () => `Promise`<`string`\> |
-| `storage` | `StorageInterface` |
+| `storage` | [`StorageInterface`](../interfaces/StorageInterface.md) |
 | `serviceProviderOptions` | `ServiceProviderArgs` |
 | `storageOptions` | `TorusStorageLayerArgs` |
 | `options` | `Omit`<`ProviderBaseOptions`, ``"getPassword"``\> |
@@ -1323,7 +1323,7 @@ ___
 
 #### Defined in
 
-src/provider.ts:42
+[src/provider.ts:39](https://github.com/haqq-network/haqq-wallet-provider-mpc-react-native/blob/120ddee/src/provider.ts#L39)
 
 ___
 
