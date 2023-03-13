@@ -1,6 +1,6 @@
 {
   "name": "@haqq/provider-mpc-react-native",
-  "version": "0.0.1",
+  "version": "0.0.3",
   "description": "Provider for react-native ledger",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
