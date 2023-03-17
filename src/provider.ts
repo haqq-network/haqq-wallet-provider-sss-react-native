@@ -94,11 +94,9 @@ export class ProviderSSSReactNative
       await tKey.generateNewShare();
     }
 
-    const rootShareIndex = new BN(1);
-
     const [cShare, deviceShare] = tKey
       .getAllShareStoresForLatestPolynomial()
-      .filter(s => s.share.shareIndex !== rootShareIndex)
+      .filter(s => s.share.shareIndex.toString() !== '1')
       .sort((a, b) => a.share.share.cmp(b.share.share));
 
     const stored = await storage.setItem(

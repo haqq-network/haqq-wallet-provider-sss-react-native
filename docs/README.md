@@ -1,4 +1,4 @@
-@haqq/provider-sss-react-native - v0.0.2 / [Exports](modules.md)
+@haqq/provider-sss-react-native - v0.0.5 / [Exports](modules.md)
 
 # Provider for multi party connection on react-native platform
 
