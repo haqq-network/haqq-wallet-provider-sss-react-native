@@ -1,14 +1,14 @@
 import {hexConcat} from '@ethersproject/bytes';
 import {serialize, UnsignedTransaction} from '@ethersproject/transactions';
 import {
-  BytesLike,
   compressPublicKey,
   hexStringToByteArray,
   joinSignature,
+  stringToUtf8Bytes,
+  BytesLike,
   Provider,
   ProviderBaseOptions,
   ProviderInterface,
-  stringToUtf8Bytes,
   TransactionRequest,
 } from '@haqq/provider-base';
 import {
@@ -34,7 +34,8 @@ import {ProviderMpcOptions, StorageInterface} from './types';
 
 export class ProviderMpcReactNative
   extends Provider<ProviderMpcOptions>
-  implements ProviderInterface {
+  implements ProviderInterface
+{
   static async initialize(
     web3privateKey: string,
     questionAnswer: string | null,
