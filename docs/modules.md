@@ -1,6 +1,6 @@
-[@haqq/provider-mpc-react-native - v0.0.2](README.md) / Exports
+[@haqq/provider-mpc-react-native - v0.0.5](README.md) / Exports
 
-# @haqq/provider-mpc-react-native - v0.0.2
+# @haqq/provider-mpc-react-native - v0.0.5
 
 ## Table of contents
 
@@ -36,7 +36,7 @@
 
 #### Defined in
 
-[src/types.ts:13](https://github.com/haqq-network/haqq-wallet-provider-mpc-react-native/blob/120ddee/src/types.ts#L13)
+[src/types.ts:13](https://github.com/haqq-network/haqq-wallet-provider-mpc-react-native/blob/8e08ed7/src/types.ts#L13)
 
 ## Functions
 
@@ -58,4 +58,4 @@
 
 #### Defined in
 
-[src/initialize-tkey.ts:10](https://github.com/haqq-network/haqq-wallet-provider-mpc-react-native/blob/120ddee/src/initialize-tkey.ts#L10)
+[src/initialize-tkey.ts:10](https://github.com/haqq-network/haqq-wallet-provider-mpc-react-native/blob/8e08ed7/src/initialize-tkey.ts#L10)

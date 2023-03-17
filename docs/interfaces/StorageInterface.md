@@ -1,4 +1,4 @@
-[@haqq/provider-mpc-react-native - v0.0.2](../README.md) / [Exports](../modules.md) / StorageInterface
+[@haqq/provider-mpc-react-native - v0.0.5](../README.md) / [Exports](../modules.md) / StorageInterface
 
 # Interface: StorageInterface
 
@@ -30,7 +30,7 @@
 
 #### Defined in
 
-[src/types.ts:4](https://github.com/haqq-network/haqq-wallet-provider-mpc-react-native/blob/120ddee/src/types.ts#L4)
+[src/types.ts:4](https://github.com/haqq-network/haqq-wallet-provider-mpc-react-native/blob/8e08ed7/src/types.ts#L4)
 
 ___
 
@@ -44,7 +44,7 @@ ___
 
 #### Defined in
 
-[src/types.ts:2](https://github.com/haqq-network/haqq-wallet-provider-mpc-react-native/blob/120ddee/src/types.ts#L2)
+[src/types.ts:2](https://github.com/haqq-network/haqq-wallet-provider-mpc-react-native/blob/8e08ed7/src/types.ts#L2)
 
 ___
 
@@ -64,7 +64,7 @@ ___
 
 #### Defined in
 
-[src/types.ts:6](https://github.com/haqq-network/haqq-wallet-provider-mpc-react-native/blob/120ddee/src/types.ts#L6)
+[src/types.ts:6](https://github.com/haqq-network/haqq-wallet-provider-mpc-react-native/blob/8e08ed7/src/types.ts#L6)
 
 ___
 
@@ -84,7 +84,7 @@ ___
 
 #### Defined in
 
-[src/types.ts:10](https://github.com/haqq-network/haqq-wallet-provider-mpc-react-native/blob/120ddee/src/types.ts#L10)
+[src/types.ts:10](https://github.com/haqq-network/haqq-wallet-provider-mpc-react-native/blob/8e08ed7/src/types.ts#L10)
 
 ___
 
@@ -105,4 +105,4 @@ ___
 
 #### Defined in
 
-[src/types.ts:8](https://github.com/haqq-network/haqq-wallet-provider-mpc-react-native/blob/120ddee/src/types.ts#L8)
+[src/types.ts:8](https://github.com/haqq-network/haqq-wallet-provider-mpc-react-native/blob/8e08ed7/src/types.ts#L8)
