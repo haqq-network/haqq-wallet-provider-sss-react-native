@@ -1,14 +1,14 @@
 import {hexConcat} from '@ethersproject/bytes';
 import {serialize, UnsignedTransaction} from '@ethersproject/transactions';
 import {
+  BytesLike,
   compressPublicKey,
   hexStringToByteArray,
   joinSignature,
-  stringToUtf8Bytes,
-  BytesLike,
   Provider,
   ProviderBaseOptions,
   ProviderInterface,
+  stringToUtf8Bytes,
   TransactionRequest,
 } from '@haqq/provider-base';
 import {
@@ -22,7 +22,6 @@ import {
   ShareStore,
   TorusStorageLayerArgs,
 } from '@tkey/common-types';
-import {SecurityQuestionStore} from '@tkey/security-questions';
 import BN from 'bn.js';
 import EncryptedStorage from 'react-native-encrypted-storage';
 import {ITEM_KEY} from './constants';
@@ -34,8 +33,7 @@ import {ProviderMpcOptions, StorageInterface} from './types';
 
 export class ProviderMpcReactNative
   extends Provider<ProviderMpcOptions>
-  implements ProviderInterface
-{
+  implements ProviderInterface {
   static async initialize(
     web3privateKey: string,
     questionAnswer: string | null,
@@ -113,11 +111,15 @@ export class ProviderMpcReactNative
 
     const pass = await getPassword();
 
-    const sqStore = await encryptShare(ShareStore.fromJSON(deviceShare), pass);
+    const sqStore = await encryptShare({
+      share: deviceShare.share.share.toString('hex'),
+      shareIndex: deviceShare.share.shareIndex.toString('hex'),
+      polynomialID: deviceShare.polynomialID,
+    }, pass);
 
     await EncryptedStorage.setItem(
       `${ITEM_KEY}_${address.toLowerCase()}`,
-      JSON.stringify(sqStore.toJSON()),
+      JSON.stringify(sqStore),
     );
 
     const accounts = await ProviderMpcReactNative.getAccounts();
@@ -335,14 +337,12 @@ export class ProviderMpcReactNative
       if (share1) {
         const password = await this._options.getPassword();
 
-        const sqStore = SecurityQuestionStore.fromJSON(JSON.parse(share1));
-
-        const share = await decryptShare(sqStore, password);
+        const share = await decryptShare(JSON.parse(share1), password);
         const share2 = await encryptShare(share, pin);
 
         await EncryptedStorage.setItem(
           `${ITEM_KEY}_${this.getIdentifier().toLowerCase()}`,
-          JSON.stringify(share2.toJSON()),
+          JSON.stringify(share2),
         );
       }
     } catch (e) {
@@ -369,7 +369,7 @@ export class ProviderMpcReactNative
     const password = await this._options.getPassword();
 
     const localShare = await decryptShare(
-      SecurityQuestionStore.fromJSON(JSON.parse(shareLocal)),
+      JSON.parse(shareLocal),
       password,
     );
 

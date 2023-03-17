@@ -1,31 +1,25 @@
-import {ecCurve, Share, ShareStore} from '@tkey/common-types';
-import {
-  SecurityQuestionsError,
-  SecurityQuestionStore,
-} from '@tkey/security-questions';
+import {accountInfo} from '@haqq/provider-web3-utils';
+import BN from 'bn.js';
+import {curveN} from './constants';
 import {hashPasswordToBN} from './hash-password-to-bn';
+import {Share, ShareEncrypted} from './types';
 
 export async function decryptShare(
-  sqStore: SecurityQuestionStore,
+  shareEncrypted: ShareEncrypted,
   password: string,
-): Promise<ShareStore> {
+): Promise<Share> {
   const userInputHash = await hashPasswordToBN(password);
-  let share = sqStore.nonce.add(userInputHash);
-  share = share.umod(ecCurve.curve.n);
+  const share = new BN(shareEncrypted.nonce, 'hex').add(userInputHash).umod(curveN);
 
-  const shareStore = new ShareStore(
-    new Share(sqStore.shareIndex, share),
-    sqStore.polynomialID,
-  );
+  const info = await accountInfo(share.toString('hex'));
 
-  const derivedPublicShare = shareStore.share.getPublicShare();
-  if (
-    derivedPublicShare.shareCommitment.x.cmp(
-      sqStore.sqPublicShare.shareCommitment.x,
-    ) !== 0
-  ) {
-    throw SecurityQuestionsError.incorrectAnswer();
+  if (info.publicKey !== shareEncrypted.publicShare) {
+    throw new Error('Incorrect password');
   }
 
-  return shareStore;
+  return {
+    share: share.toString('hex'),
+    shareIndex: shareEncrypted.shareIndex,
+    polynomialID: shareEncrypted.polynomialID,
+  };
 }
