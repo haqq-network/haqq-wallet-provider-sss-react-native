@@ -1,4 +1,4 @@
-[@haqq/provider-mpc-react-native - v0.0.2](../README.md) / [Exports](../modules.md) / ProviderMpcReactNative
+[@haqq/provider-mpc-react-native - v0.0.5](../README.md) / [Exports](../modules.md) / ProviderMpcReactNative
 
 # Class: ProviderMpcReactNative
 
@@ -63,6 +63,7 @@
 - [on](ProviderMpcReactNative.md#on-1)
 - [once](ProviderMpcReactNative.md#once-1)
 - [setMaxListeners](ProviderMpcReactNative.md#setmaxlisteners-1)
+- [setStorageForAccount](ProviderMpcReactNative.md#setstorageforaccount)
 
 ## Constructors
 
@@ -407,7 +408,7 @@ Provider.getAccountInfo
 
 #### Defined in
 
-[src/provider.ts:174](https://github.com/haqq-network/haqq-wallet-provider-mpc-react-native/blob/120ddee/src/provider.ts#L174)
+[src/provider.ts:175](https://github.com/haqq-network/haqq-wallet-provider-mpc-react-native/blob/8e08ed7/src/provider.ts#L175)
 
 ___
 
@@ -429,7 +430,7 @@ Provider.getIdentifier
 
 #### Defined in
 
-[src/provider.ts:170](https://github.com/haqq-network/haqq-wallet-provider-mpc-react-native/blob/120ddee/src/provider.ts#L170)
+[src/provider.ts:171](https://github.com/haqq-network/haqq-wallet-provider-mpc-react-native/blob/8e08ed7/src/provider.ts#L171)
 
 ___
 
@@ -506,7 +507,7 @@ ___
 
 #### Defined in
 
-[src/provider.ts:353](https://github.com/haqq-network/haqq-wallet-provider-mpc-react-native/blob/120ddee/src/provider.ts#L353)
+[src/provider.ts:354](https://github.com/haqq-network/haqq-wallet-provider-mpc-react-native/blob/8e08ed7/src/provider.ts#L354)
 
 ___
 
@@ -1100,7 +1101,7 @@ Provider.signPersonalMessage
 
 #### Defined in
 
-[src/provider.ts:249](https://github.com/haqq-network/haqq-wallet-provider-mpc-react-native/blob/120ddee/src/provider.ts#L249)
+[src/provider.ts:250](https://github.com/haqq-network/haqq-wallet-provider-mpc-react-native/blob/8e08ed7/src/provider.ts#L250)
 
 ___
 
@@ -1129,7 +1130,7 @@ Provider.signTransaction
 
 #### Defined in
 
-[src/provider.ts:208](https://github.com/haqq-network/haqq-wallet-provider-mpc-react-native/blob/120ddee/src/provider.ts#L208)
+[src/provider.ts:209](https://github.com/haqq-network/haqq-wallet-provider-mpc-react-native/blob/8e08ed7/src/provider.ts#L209)
 
 ___
 
@@ -1159,7 +1160,7 @@ Provider.signTypedData
 
 #### Defined in
 
-[src/provider.ts:292](https://github.com/haqq-network/haqq-wallet-provider-mpc-react-native/blob/120ddee/src/provider.ts#L292)
+[src/provider.ts:293](https://github.com/haqq-network/haqq-wallet-provider-mpc-react-native/blob/8e08ed7/src/provider.ts#L293)
 
 ___
 
@@ -1179,7 +1180,7 @@ ___
 
 #### Defined in
 
-[src/provider.ts:379](https://github.com/haqq-network/haqq-wallet-provider-mpc-react-native/blob/120ddee/src/provider.ts#L379)
+[src/provider.ts:389](https://github.com/haqq-network/haqq-wallet-provider-mpc-react-native/blob/8e08ed7/src/provider.ts#L389)
 
 ___
 
@@ -1207,7 +1208,7 @@ Provider.updatePin
 
 #### Defined in
 
-[src/provider.ts:327](https://github.com/haqq-network/haqq-wallet-provider-mpc-react-native/blob/120ddee/src/provider.ts#L327)
+[src/provider.ts:328](https://github.com/haqq-network/haqq-wallet-provider-mpc-react-native/blob/8e08ed7/src/provider.ts#L328)
 
 ___
 
@@ -1221,7 +1222,7 @@ ___
 
 #### Defined in
 
-[src/provider.ts:154](https://github.com/haqq-network/haqq-wallet-provider-mpc-react-native/blob/120ddee/src/provider.ts#L154)
+[src/provider.ts:137](https://github.com/haqq-network/haqq-wallet-provider-mpc-react-native/blob/8e08ed7/src/provider.ts#L137)
 
 ___
 
@@ -1295,7 +1296,7 @@ ___
 
 #### Defined in
 
-[src/provider.ts:160](https://github.com/haqq-network/haqq-wallet-provider-mpc-react-native/blob/120ddee/src/provider.ts#L160)
+[src/provider.ts:143](https://github.com/haqq-network/haqq-wallet-provider-mpc-react-native/blob/8e08ed7/src/provider.ts#L143)
 
 ___
 
@@ -1323,7 +1324,7 @@ ___
 
 #### Defined in
 
-[src/provider.ts:39](https://github.com/haqq-network/haqq-wallet-provider-mpc-react-native/blob/120ddee/src/provider.ts#L39)
+[src/provider.ts:38](https://github.com/haqq-network/haqq-wallet-provider-mpc-react-native/blob/8e08ed7/src/provider.ts#L38)
 
 ___
 
@@ -1627,3 +1628,24 @@ Provider.setMaxListeners
 #### Defined in
 
 node_modules/@types/node/events.d.ts:317
+
+___
+
+### setStorageForAccount
+
+▸ `Static` **setStorageForAccount**(`accountId`, `storage`): `Promise`<`string`[]\>
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `accountId` | `string` |
+| `storage` | [`StorageInterface`](../interfaces/StorageInterface.md) |
+
+#### Returns
+
+`Promise`<`string`[]\>
+
+#### Defined in
+
+[src/provider.ts:153](https://github.com/haqq-network/haqq-wallet-provider-mpc-react-native/blob/8e08ed7/src/provider.ts#L153)

@@ -1,14 +1,14 @@
 import {hexConcat} from '@ethersproject/bytes';
 import {serialize, UnsignedTransaction} from '@ethersproject/transactions';
 import {
+  BytesLike,
   compressPublicKey,
   hexStringToByteArray,
   joinSignature,
-  stringToUtf8Bytes,
-  BytesLike,
   Provider,
   ProviderBaseOptions,
   ProviderInterface,
+  stringToUtf8Bytes,
   TransactionRequest,
 } from '@haqq/provider-base';
 import {
@@ -34,8 +34,7 @@ import {ProviderMpcOptions, StorageInterface} from './types';
 
 export class ProviderMpcReactNative
   extends Provider<ProviderMpcOptions>
-  implements ProviderInterface
-{
+  implements ProviderInterface {
   static async initialize(
     web3privateKey: string,
     questionAnswer: string | null,
@@ -94,11 +93,9 @@ export class ProviderMpcReactNative
       await tKey.generateNewShare();
     }
 
-    const rootShareIndex = new BN(1);
-
     const [cShare, deviceShare] = tKey
       .getAllShareStoresForLatestPolynomial()
-      .filter(s => s.share.shareIndex !== rootShareIndex)
+      .filter(s => s.share.shareIndex.toString() !== '1')
       .sort((a, b) => a.share.share.cmp(b.share.share));
 
     const stored = await storage.setItem(
