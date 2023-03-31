@@ -1,20 +1,22 @@
-import {ecCurve, ShareStore} from '@tkey/common-types';
-import {SecurityQuestionStore} from '@tkey/security-questions';
+import {accountInfo} from '@haqq/provider-web3-utils';
+import BN from 'bn.js';
+import {curveN} from './constants';
 import {hashPasswordToBN} from './hash-password-to-bn';
+import {Share, ShareEncrypted} from './types';
 
 export async function encryptShare(
-  shareStore: ShareStore,
+  share: Share,
   password: string,
-): Promise<SecurityQuestionStore> {
+): Promise<ShareEncrypted> {
   const hash = await hashPasswordToBN(password);
-  let nonce = shareStore.share.share.sub(hash);
-  nonce = nonce.umod(ecCurve.curve.n);
+  const nonce = new BN(share.share, 'hex').sub(hash).umod(curveN);
 
-  return new SecurityQuestionStore({
-    nonce,
-    questions: '',
-    sqPublicShare: shareStore.share.getPublicShare(),
-    shareIndex: shareStore.share.shareIndex,
-    polynomialID: shareStore.polynomialID,
-  });
+  const publicShare = await accountInfo(share.share);
+
+  return {
+    nonce: nonce.toString('hex'),
+    publicShare: publicShare.publicKey,
+    shareIndex: share.shareIndex,
+    polynomialID: share.polynomialID,
+  };
 }

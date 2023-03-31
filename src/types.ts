@@ -15,3 +15,16 @@ export type ProviderSSSOptions = {
   getPassword: () => Promise<string>;
   storage: StorageInterface;
 };
+
+export type Share = {
+  share: string;
+  shareIndex: string;
+  polynomialID: string;
+};
+
+export type ShareEncrypted = {
+  nonce: string;
+  shareIndex: string;
+  polynomialID: string;
+  publicShare: string;
+};

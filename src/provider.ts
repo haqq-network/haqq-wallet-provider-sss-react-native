@@ -22,7 +22,6 @@ import {
   ShareStore,
   TorusStorageLayerArgs,
 } from '@tkey/common-types';
-import {SecurityQuestionStore} from '@tkey/security-questions';
 import BN from 'bn.js';
 import EncryptedStorage from 'react-native-encrypted-storage';
 import {ITEM_KEY} from './constants';
@@ -113,11 +112,18 @@ export class ProviderSSSReactNative
 
     const pass = await getPassword();
 
-    const sqStore = await encryptShare(ShareStore.fromJSON(deviceShare), pass);
+    const sqStore = await encryptShare(
+      {
+        share: deviceShare.share.share.toString('hex'),
+        shareIndex: deviceShare.share.shareIndex.toString('hex'),
+        polynomialID: deviceShare.polynomialID,
+      },
+      pass,
+    );
 
     await EncryptedStorage.setItem(
       `${ITEM_KEY}_${address.toLowerCase()}`,
-      JSON.stringify(sqStore.toJSON()),
+      JSON.stringify(sqStore),
     );
 
     const accounts = await ProviderSSSReactNative.getAccounts();
@@ -335,14 +341,12 @@ export class ProviderSSSReactNative
       if (share1) {
         const password = await this._options.getPassword();
 
-        const sqStore = SecurityQuestionStore.fromJSON(JSON.parse(share1));
-
-        const share = await decryptShare(sqStore, password);
+        const share = await decryptShare(JSON.parse(share1), password);
         const share2 = await encryptShare(share, pin);
 
         await EncryptedStorage.setItem(
           `${ITEM_KEY}_${this.getIdentifier().toLowerCase()}`,
-          JSON.stringify(share2.toJSON()),
+          JSON.stringify(share2),
         );
       }
     } catch (e) {
@@ -368,10 +372,7 @@ export class ProviderSSSReactNative
 
     const password = await this._options.getPassword();
 
-    const localShare = await decryptShare(
-      SecurityQuestionStore.fromJSON(JSON.parse(shareLocal)),
-      password,
-    );
+    const localShare = await decryptShare(JSON.parse(shareLocal), password);
 
     const share = JSON.parse(item);
 
