@@ -18,108 +18,156 @@ import {
   sign,
 } from '@haqq/provider-web3-utils';
 import {
-  ServiceProviderArgs,
-  ShareStore,
-  TorusStorageLayerArgs,
-} from '@tkey/common-types';
+  getMetadataValue,
+  jsonrpcRequest,
+  setMetadataValue,
+  SharesResponse,
+  ShareCreateResponse
+} from '@haqq/shared-react-native';
 import BN from 'bn.js';
 import EncryptedStorage from 'react-native-encrypted-storage';
 import {ITEM_KEY} from './constants';
 import {decryptShare} from './decrypt-share';
 import {encryptShare} from './encrypt-share';
 import {getSeed} from './get-seed';
-import {initializeTKey} from './initialize-tkey';
+import {lagrangeInterpolation} from './lagrange-interpolation';
+import {Polynomial} from './polynomial';
 import {ProviderMpcOptions, StorageInterface} from './types';
 
 export class ProviderMpcReactNative
   extends Provider<ProviderMpcOptions>
-  implements ProviderInterface
-{
+  implements ProviderInterface {
   static async initialize(
-    web3privateKey: string,
-    questionAnswer: string | null,
+    socialPrivateKey: string | null,
     cloudShare: string | null,
     privateKey: string | null,
+    verifier: string,
+    token: string,
     getPassword: () => Promise<string>,
     storage: StorageInterface,
-    serviceProviderOptions: ServiceProviderArgs,
-    storageOptions: TorusStorageLayerArgs,
-    options: Omit<ProviderBaseOptions, 'getPassword'>,
+    options: Omit<ProviderBaseOptions, 'getPassword'> & {
+      metadataUrl: string,
+      generateSharesUrl: string
+    }
   ): Promise<ProviderMpcReactNative> {
-    let password = questionAnswer;
+    let keyPK = socialPrivateKey;
+    const shares = [];
 
-    const {tKey, securityQuestionsModule} = await initializeTKey(
-      web3privateKey,
-      serviceProviderOptions,
-      storageOptions,
-    );
+    if (cloudShare) {
+      shares.push(JSON.parse(cloudShare));
+    }
 
-    if (!questionAnswer && !cloudShare) {
-      const bytes = privateKey
+    if (socialPrivateKey) {
+      const socialShareIndex = await getMetadataValue(
+        options.metadataUrl,
+        socialPrivateKey,
+        'socialShareIndex',
+      );
+
+      if (socialShareIndex) {
+        shares.push({
+          ...socialShareIndex,
+          share: socialPrivateKey,
+        });
+      }
+    }
+
+    if (shares.length < 2 || privateKey) {
+      const pk = privateKey
         ? Buffer.from(privateKey, 'hex')
         : await generateEntropy(32);
 
-      await tKey._initializeNewKey({
-        initializeModules: true,
-        importedKey: new BN(bytes),
-      });
+      const p = await Polynomial.initialize(pk, 2);
 
-      password = await getPassword();
+      for (let i = 0; i < 2; i++) {
+        const index = await generateEntropy(16);
+        shares.push(p.getShare(index.toString('hex')));
+      }
+    }
 
-      await securityQuestionsModule.generateNewShareWithSecurityQuestions(
-        password,
-        'whats your password?',
+    const poly = Polynomial.fromShares(shares);
+
+    if (!socialPrivateKey || privateKey) {
+      const index = await generateEntropy(16);
+      const tmpSocialShare = poly.getShare(index.toString('hex'));
+
+      const p = await Polynomial.initialize(
+        new BN(tmpSocialShare.share, 'hex'),
+        3,
       );
-    }
 
-    if (questionAnswer) {
-      await securityQuestionsModule.inputShareFromSecurityQuestions(
-        password as string,
+      const nodeDetailsRequest = await jsonrpcRequest<SharesResponse>(
+        options.generateSharesUrl,
+        'shares',
+        [verifier, token, true],
       );
-    }
 
-    if (cloudShare) {
-      const share = ShareStore.fromJSON(JSON.parse(cloudShare));
-      tKey.inputShareStore(share);
-    }
-
-    if (questionAnswer || cloudShare) {
-      await tKey.reconstructKey();
-    }
-
-    const {address} = await accountInfo(web3privateKey.padStart(64, '0'));
-
-    while (tKey.getAllShareStoresForLatestPolynomial().length < 3) {
-      await tKey.generateNewShare();
-    }
-
-    const [cShare, deviceShare] = tKey
-      .getAllShareStoresForLatestPolynomial()
-      .filter(s => s.share.shareIndex.toString() !== '1')
-      .sort((a, b) => a.share.share.cmp(b.share.share));
-
-    const stored = await storage.setItem(
-      `haqq_${address.toLowerCase()}`,
-      JSON.stringify(cShare),
-    );
-
-    if (stored) {
-      await ProviderMpcReactNative.setStorageForAccount(
-        address.toLowerCase(),
-        storage,
+      const tmpPk = await generateEntropy(32);
+      const info = await accountInfo(tmpPk.toString('hex'));
+      const sharesTmp = await Promise.all(
+        nodeDetailsRequest.shares.map(s =>
+          jsonrpcRequest<ShareCreateResponse>(s[0], 'shareCreate', [
+            verifier,
+            token,
+            info.publicKey,
+            p.getShare(s[1]).share,
+          ])
+            .then(r => [r.hex_share, s[1]])
+            .catch(() => [null, s[1]]),
+        ),
       );
+
+      const sharesTmp2 = sharesTmp.filter(s => s[0] !== null) as [string, string][];
+
+      if (sharesTmp2.length < 2) {
+        throw new Error('Not enought shares');
+      }
+
+      const newPk = lagrangeInterpolation(
+        sharesTmp2.map(s => new BN(s[0], 'hex')),
+        sharesTmp2.map(s => new BN(s[1], 'hex')),
+      );
+
+      if (newPk.toString('hex') !== tmpSocialShare.share) {
+        throw new Error('Something went wrong');
+      }
+
+      keyPK = newPk.toString('hex');
+
+      const {share, ...shareIndex} = tmpSocialShare;
+
+      await setMetadataValue(options.metadataUrl, share, 'socialShareIndex', shareIndex);
     }
+
+    if (keyPK === null) {
+      throw new Error('keyPK is null');
+    }
+
+    const {address} = await accountInfo(keyPK);
+
+    if (!cloudShare) {
+      const index = await generateEntropy(16);
+      const tmpCloudShare = poly.getShare(index.toString('hex'));
+
+      const stored = await storage.setItem(
+        `haqq_${address.toLowerCase()}`,
+        JSON.stringify(tmpCloudShare),
+      );
+
+      if (stored) {
+        await ProviderMpcReactNative.setStorageForAccount(
+          address.toLowerCase(),
+          storage,
+        );
+      }
+    }
+
+    const deviceShareIndex = await generateEntropy(16);
+    const deviceShare = poly.getShare(deviceShareIndex.toString('hex'));
 
     const pass = await getPassword();
 
-    const sqStore = await encryptShare(
-      {
-        share: deviceShare.share.share.toString('hex'),
-        shareIndex: deviceShare.share.shareIndex.toString('hex'),
-        polynomialID: deviceShare.polynomialID,
-      },
-      pass,
-    );
+    const sqStore = await encryptShare(deviceShare, pass);
 
     await EncryptedStorage.setItem(
       `${ITEM_KEY}_${address.toLowerCase()}`,
