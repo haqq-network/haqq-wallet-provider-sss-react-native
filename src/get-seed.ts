@@ -20,10 +20,7 @@ export async function getSeed(
 
   if (share1) {
     const password = await getPassword();
-    const shareStore = await decryptShare(
-      JSON.parse(share1),
-      password,
-    );
+    const shareStore = await decryptShare(JSON.parse(share1), password);
 
     shares.push(shareStore);
   }

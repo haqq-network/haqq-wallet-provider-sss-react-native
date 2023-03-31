@@ -9,7 +9,7 @@ export async function encryptShare(
   password: string,
 ): Promise<ShareEncrypted> {
   const hash = await hashPasswordToBN(password);
-  const nonce = (new BN(share.share, 'hex')).sub(hash).umod(curveN);
+  const nonce = new BN(share.share, 'hex').sub(hash).umod(curveN);
 
   const publicShare = await accountInfo(share.share);
 

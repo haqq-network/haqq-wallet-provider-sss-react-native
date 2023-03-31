@@ -33,7 +33,8 @@ import {ProviderMpcOptions, StorageInterface} from './types';
 
 export class ProviderMpcReactNative
   extends Provider<ProviderMpcOptions>
-  implements ProviderInterface {
+  implements ProviderInterface
+{
   static async initialize(
     web3privateKey: string,
     questionAnswer: string | null,
@@ -111,11 +112,14 @@ export class ProviderMpcReactNative
 
     const pass = await getPassword();
 
-    const sqStore = await encryptShare({
-      share: deviceShare.share.share.toString('hex'),
-      shareIndex: deviceShare.share.shareIndex.toString('hex'),
-      polynomialID: deviceShare.polynomialID,
-    }, pass);
+    const sqStore = await encryptShare(
+      {
+        share: deviceShare.share.share.toString('hex'),
+        shareIndex: deviceShare.share.shareIndex.toString('hex'),
+        polynomialID: deviceShare.polynomialID,
+      },
+      pass,
+    );
 
     await EncryptedStorage.setItem(
       `${ITEM_KEY}_${address.toLowerCase()}`,
@@ -368,10 +372,7 @@ export class ProviderMpcReactNative
 
     const password = await this._options.getPassword();
 
-    const localShare = await decryptShare(
-      JSON.parse(shareLocal),
-      password,
-    );
+    const localShare = await decryptShare(JSON.parse(shareLocal), password);
 
     const share = JSON.parse(item);
 

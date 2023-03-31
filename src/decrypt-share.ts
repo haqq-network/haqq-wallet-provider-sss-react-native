@@ -9,7 +9,9 @@ export async function decryptShare(
   password: string,
 ): Promise<Share> {
   const userInputHash = await hashPasswordToBN(password);
-  const share = new BN(shareEncrypted.nonce, 'hex').add(userInputHash).umod(curveN);
+  const share = new BN(shareEncrypted.nonce, 'hex')
+    .add(userInputHash)
+    .umod(curveN);
 
   const info = await accountInfo(share.toString('hex'));
 

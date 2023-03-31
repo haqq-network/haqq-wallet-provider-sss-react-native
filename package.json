@@ -11,10 +11,10 @@
   "scripts": {
     "test": "jest --config jestconfig.json --passWithNoTests",
     "build": "tsc",
-    "format": "prettier --write \"src/**/*.ts\" \"src/**/*.js\"",
     "lint": "tslint -p tsconfig.json",
     "typescript:check": "tsc",
     "prettier:check": "prettier --check ./src",
+    "prettier:format": "prettier --write \"src/**/*.ts\"",
     "typedoc": "typedoc"
   },
   "dependencies": {
