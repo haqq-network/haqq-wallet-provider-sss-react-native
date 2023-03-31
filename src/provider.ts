@@ -22,7 +22,7 @@ import {
   jsonrpcRequest,
   setMetadataValue,
   SharesResponse,
-  ShareCreateResponse
+  ShareCreateResponse,
 } from '@haqq/shared-react-native';
 import BN from 'bn.js';
 import EncryptedStorage from 'react-native-encrypted-storage';
@@ -36,7 +36,8 @@ import {ProviderMpcOptions, StorageInterface} from './types';
 
 export class ProviderMpcReactNative
   extends Provider<ProviderMpcOptions>
-  implements ProviderInterface {
+  implements ProviderInterface
+{
   static async initialize(
     socialPrivateKey: string | null,
     cloudShare: string | null,
@@ -46,9 +47,9 @@ export class ProviderMpcReactNative
     getPassword: () => Promise<string>,
     storage: StorageInterface,
     options: Omit<ProviderBaseOptions, 'getPassword'> & {
-      metadataUrl: string,
-      generateSharesUrl: string
-    }
+      metadataUrl: string;
+      generateSharesUrl: string;
+    },
   ): Promise<ProviderMpcReactNative> {
     let keyPK = socialPrivateKey;
     const shares = [];
@@ -117,7 +118,10 @@ export class ProviderMpcReactNative
         ),
       );
 
-      const sharesTmp2 = sharesTmp.filter(s => s[0] !== null) as [string, string][];
+      const sharesTmp2 = sharesTmp.filter(s => s[0] !== null) as [
+        string,
+        string,
+      ][];
 
       if (sharesTmp2.length < 2) {
         throw new Error('Not enought shares');
@@ -136,7 +140,12 @@ export class ProviderMpcReactNative
 
       const {share, ...shareIndex} = tmpSocialShare;
 
-      await setMetadataValue(options.metadataUrl, share, 'socialShareIndex', shareIndex);
+      await setMetadataValue(
+        options.metadataUrl,
+        share,
+        'socialShareIndex',
+        shareIndex,
+      );
     }
 
     if (keyPK === null) {
