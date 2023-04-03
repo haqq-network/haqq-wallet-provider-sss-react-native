@@ -32,7 +32,9 @@ export class Polynomial {
       shares.push(new BN(share));
     }
 
-    const polymonialId = await hashMessage(shares.map(bn => bn.toString()).join('|'))
+    const polymonialId = await hashMessage(
+      shares.map(bn => bn.toString()).join('|'),
+    );
 
     return new Polynomial(shares, polymonialId);
   }
@@ -53,7 +55,9 @@ export class Polynomial {
       }
     }
 
-    const polymonialId = await hashMessage(polynomial.map(bn => bn.toString()).join('|'))
+    const polymonialId = await hashMessage(
+      polynomial.map(bn => bn.toString()).join('|'),
+    );
 
     return new Polynomial(polynomial, polymonialId);
   }
