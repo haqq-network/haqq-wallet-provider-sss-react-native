@@ -1,6 +1,6 @@
 import {Buffer} from 'buffer';
 
-import {generateEntropy} from '@haqq/provider-web3-utils';
+import {generateEntropy, hashMessage} from '@haqq/provider-web3-utils';
 import BN from 'bn.js';
 import {Share} from './types';
 
@@ -12,6 +12,7 @@ type Point = {
 
 export class Polynomial {
   shares: BN[];
+  polymonialId: string;
 
   static curveN = new BN(
     'FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFEBAAEDCE6AF48A03BBFD25E8CD0364141',
@@ -31,10 +32,14 @@ export class Polynomial {
       shares.push(new BN(share));
     }
 
-    return new Polynomial(shares);
+    const polymonialId = await hashMessage(
+      shares.map(bn => bn.toString()).join('|'),
+    );
+
+    return new Polynomial(shares, polymonialId);
   }
 
-  static fromShares(shares: Share[]) {
+  static async fromShares(shares: Share[]) {
     const unsortedPoints = shares.map<Point>(s => ({
       x: new BN(s.shareIndex, 'hex'),
       y: new BN(s.share, 'hex'),
@@ -49,11 +54,17 @@ export class Polynomial {
         polynomial[k] = polynomial[k].add(tmp).umod(Polynomial.curveN);
       }
     }
-    return new Polynomial(polynomial);
+
+    const polymonialId = await hashMessage(
+      polynomial.map(bn => bn.toString()).join('|'),
+    );
+
+    return new Polynomial(polynomial, polymonialId);
   }
 
-  constructor(shares: BN[]) {
+  constructor(shares: BN[], polymonialId: string = '') {
     this.shares = shares;
+    this.polymonialId = polymonialId;
   }
 
   getPrivateKey(): BN {
@@ -71,7 +82,7 @@ export class Polynomial {
     return {
       share: sum.umod(Polynomial.curveN).toString('hex'),
       shareIndex: tmpX.toString('hex'),
-      polynomialID: '',
+      polynomialID: this.polymonialId,
     };
   }
 }

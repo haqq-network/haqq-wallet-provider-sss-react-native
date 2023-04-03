@@ -4,6 +4,9 @@ import {Polynomial} from '../polynomial';
 jest.mock('@haqq/provider-web3-utils', () => {
   return {
     __esModule: true,
+    hashMessage: jest.fn(
+      () => '9b7fe0884f96d96dbe3b481e9c69e40f9f5b4430cb9eabe6785c83ef2877922a',
+    ),
     generateEntropy: jest
       .fn()
       .mockReturnValueOnce(
@@ -45,13 +48,15 @@ describe('polymonial', () => {
     expect(poly.getShare(new BN('14', 'hex'))).toEqual({
       share: '59fa608c1eab07826098cd94c3dd07450ca4ba632b98d7285915d0429e96fe3',
       shareIndex: '14',
-      polynomialID: '',
+      polynomialID:
+        '9b7fe0884f96d96dbe3b481e9c69e40f9f5b4430cb9eabe6785c83ef2877922a',
     });
 
     expect(poly.getShare(new BN('0a', 'hex'))).toEqual({
       share: '63eee228fcd2753b8cb25ccbc624d1bd56118226f25f441be20c7779e2065fe0',
       shareIndex: 'a',
-      polynomialID: '',
+      polynomialID:
+        '9b7fe0884f96d96dbe3b481e9c69e40f9f5b4430cb9eabe6785c83ef2877922a',
     });
   });
 
@@ -61,13 +66,15 @@ describe('polymonial', () => {
         share:
           '59fa608c1eab07826098cd94c3dd07450ca4ba632b98d7285915d0429e96fe3',
         shareIndex: '14',
-        polynomialID: '',
+        polynomialID:
+          '9b7fe0884f96d96dbe3b481e9c69e40f9f5b4430cb9eabe6785c83ef2877922a',
       },
       {
         share:
           '63eee228fcd2753b8cb25ccbc624d1bd56118226f25f441be20c7779e2065fe0',
         shareIndex: 'a',
-        polynomialID: '',
+        polynomialID:
+          '9b7fe0884f96d96dbe3b481e9c69e40f9f5b4430cb9eabe6785c83ef2877922a',
       },
     ]);
 
