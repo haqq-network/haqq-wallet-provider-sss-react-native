@@ -1,11 +1,12 @@
-[@haqq/provider-sss-react-native - v0.0.5](README.md) / Exports
+[@haqq/provider-sss-react-native - v0.0.6](README.md) / Exports
 
-# @haqq/provider-sss-react-native - v0.0.5
+# @haqq/provider-sss-react-native - v0.0.6
 
 ## Table of contents
 
 ### Classes
 
+- [Polynomial](classes/Polynomial.md)
 - [ProviderMpcReactNative](classes/ProviderMpcReactNative.md)
 
 ### Interfaces
@@ -14,11 +15,16 @@
 
 ### Type Aliases
 
-- [ProviderMpcOptions](modules.md#providersssoptions)
+- [ProviderMpcOptions](modules.md#providermpcoptions)
+- [Share](modules.md#share)
+- [ShareEncrypted](modules.md#shareencrypted)
 
 ### Functions
 
-- [initializeTKey](modules.md#initializetkey)
+- [decryptShare](modules.md#decryptshare)
+- [encryptShare](modules.md#encryptshare)
+- [hashPasswordToBN](modules.md#hashpasswordtobn)
+- [lagrangeInterpolation](modules.md#lagrangeinterpolation)
 
 ## Type Aliases
 
@@ -36,26 +42,124 @@
 
 #### Defined in
 
-[src/types.ts:13](https://github.com/haqq-network/haqq-wallet-provider-sss-react-native/blob/8e08ed7/src/types.ts#L13)
+[src/types.ts:13](https://github.com/haqq-network/haqq-wallet-provider-sss-react-native/blob/c0d6e37/src/types.ts#L13)
+
+___
+
+### Share
+
+Ƭ **Share**: `Object`
+
+#### Type declaration
+
+| Name | Type |
+| :------ | :------ |
+| `polynomialID` | `string` |
+| `share` | `string` |
+| `shareIndex` | `string` |
+
+#### Defined in
+
+[src/types.ts:19](https://github.com/haqq-network/haqq-wallet-provider-sss-react-native/blob/c0d6e37/src/types.ts#L19)
+
+___
+
+### ShareEncrypted
+
+Ƭ **ShareEncrypted**: `Object`
+
+#### Type declaration
+
+| Name | Type |
+| :------ | :------ |
+| `nonce` | `string` |
+| `polynomialID` | `string` |
+| `publicShare` | `string` |
+| `shareIndex` | `string` |
+
+#### Defined in
+
+[src/types.ts:25](https://github.com/haqq-network/haqq-wallet-provider-sss-react-native/blob/c0d6e37/src/types.ts#L25)
 
 ## Functions
 
-### initializeTKey
+### decryptShare
 
-▸ **initializeTKey**(`postboxKey`, `serviceProviderOptions`, `storageOptions`): `Promise`<{ `securityQuestionsModule`: `SecurityQuestionsModule` ; `tKey`: `ThresholdKey`  }\>
+▸ **decryptShare**(`shareEncrypted`, `password`): `Promise`<[`Share`](modules.md#share)\>
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
-| `postboxKey` | `string` |
-| `serviceProviderOptions` | `ServiceProviderArgs` |
-| `storageOptions` | `TorusStorageLayerArgs` |
+| `shareEncrypted` | [`ShareEncrypted`](modules.md#shareencrypted) |
+| `password` | `string` |
 
 #### Returns
 
-`Promise`<{ `securityQuestionsModule`: `SecurityQuestionsModule` ; `tKey`: `ThresholdKey`  }\>
+`Promise`<[`Share`](modules.md#share)\>
 
 #### Defined in
 
-[src/initialize-tkey.ts:10](https://github.com/haqq-network/haqq-wallet-provider-sss-react-native/blob/8e08ed7/src/initialize-tkey.ts#L10)
+[src/decrypt-share.ts:7](https://github.com/haqq-network/haqq-wallet-provider-sss-react-native/blob/c0d6e37/src/decrypt-share.ts#L7)
+
+___
+
+### encryptShare
+
+▸ **encryptShare**(`share`, `password`): `Promise`<[`ShareEncrypted`](modules.md#shareencrypted)\>
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `share` | [`Share`](modules.md#share) |
+| `password` | `string` |
+
+#### Returns
+
+`Promise`<[`ShareEncrypted`](modules.md#shareencrypted)\>
+
+#### Defined in
+
+[src/encrypt-share.ts:7](https://github.com/haqq-network/haqq-wallet-provider-sss-react-native/blob/c0d6e37/src/encrypt-share.ts#L7)
+
+___
+
+### hashPasswordToBN
+
+▸ **hashPasswordToBN**(`message`): `Promise`<`BN`\>
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `message` | `string` |
+
+#### Returns
+
+`Promise`<`BN`\>
+
+#### Defined in
+
+[src/hash-password-to-bn.ts:4](https://github.com/haqq-network/haqq-wallet-provider-sss-react-native/blob/c0d6e37/src/hash-password-to-bn.ts#L4)
+
+___
+
+### lagrangeInterpolation
+
+▸ **lagrangeInterpolation**(`shares`, `nodeIndex`): `BN`
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `shares` | `BN`[] |
+| `nodeIndex` | `BN`[] |
+
+#### Returns
+
+`BN`
+
+#### Defined in
+
+[src/lagrange-interpolation.ts:4](https://github.com/haqq-network/haqq-wallet-provider-sss-react-native/blob/c0d6e37/src/lagrange-interpolation.ts#L4)

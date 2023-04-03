@@ -1,4 +1,4 @@
-[@haqq/provider-sss-react-native - v0.0.5](../README.md) / [Exports](../modules.md) / ProviderMpcReactNative
+[@haqq/provider-sss-react-native - v0.0.6](../README.md) / [Exports](../modules.md) / ProviderMpcReactNative
 
 # Class: ProviderMpcReactNative
 
@@ -408,7 +408,7 @@ Provider.getAccountInfo
 
 #### Defined in
 
-[src/provider.ts:175](https://github.com/haqq-network/haqq-wallet-provider-sss-react-native/blob/8e08ed7/src/provider.ts#L175)
+[src/provider.ts:239](https://github.com/haqq-network/haqq-wallet-provider-sss-react-native/blob/c0d6e37/src/provider.ts#L239)
 
 ___
 
@@ -430,7 +430,7 @@ Provider.getIdentifier
 
 #### Defined in
 
-[src/provider.ts:171](https://github.com/haqq-network/haqq-wallet-provider-sss-react-native/blob/8e08ed7/src/provider.ts#L171)
+[src/provider.ts:235](https://github.com/haqq-network/haqq-wallet-provider-sss-react-native/blob/c0d6e37/src/provider.ts#L235)
 
 ___
 
@@ -507,7 +507,7 @@ ___
 
 #### Defined in
 
-[src/provider.ts:354](https://github.com/haqq-network/haqq-wallet-provider-sss-react-native/blob/8e08ed7/src/provider.ts#L354)
+[src/provider.ts:416](https://github.com/haqq-network/haqq-wallet-provider-sss-react-native/blob/c0d6e37/src/provider.ts#L416)
 
 ___
 
@@ -1101,7 +1101,7 @@ Provider.signPersonalMessage
 
 #### Defined in
 
-[src/provider.ts:250](https://github.com/haqq-network/haqq-wallet-provider-sss-react-native/blob/8e08ed7/src/provider.ts#L250)
+[src/provider.ts:314](https://github.com/haqq-network/haqq-wallet-provider-sss-react-native/blob/c0d6e37/src/provider.ts#L314)
 
 ___
 
@@ -1130,7 +1130,7 @@ Provider.signTransaction
 
 #### Defined in
 
-[src/provider.ts:209](https://github.com/haqq-network/haqq-wallet-provider-sss-react-native/blob/8e08ed7/src/provider.ts#L209)
+[src/provider.ts:273](https://github.com/haqq-network/haqq-wallet-provider-sss-react-native/blob/c0d6e37/src/provider.ts#L273)
 
 ___
 
@@ -1160,7 +1160,7 @@ Provider.signTypedData
 
 #### Defined in
 
-[src/provider.ts:293](https://github.com/haqq-network/haqq-wallet-provider-sss-react-native/blob/8e08ed7/src/provider.ts#L293)
+[src/provider.ts:357](https://github.com/haqq-network/haqq-wallet-provider-sss-react-native/blob/c0d6e37/src/provider.ts#L357)
 
 ___
 
@@ -1180,7 +1180,7 @@ ___
 
 #### Defined in
 
-[src/provider.ts:389](https://github.com/haqq-network/haqq-wallet-provider-sss-react-native/blob/8e08ed7/src/provider.ts#L389)
+[src/provider.ts:448](https://github.com/haqq-network/haqq-wallet-provider-sss-react-native/blob/c0d6e37/src/provider.ts#L448)
 
 ___
 
@@ -1208,7 +1208,7 @@ Provider.updatePin
 
 #### Defined in
 
-[src/provider.ts:328](https://github.com/haqq-network/haqq-wallet-provider-sss-react-native/blob/8e08ed7/src/provider.ts#L328)
+[src/provider.ts:392](https://github.com/haqq-network/haqq-wallet-provider-sss-react-native/blob/c0d6e37/src/provider.ts#L392)
 
 ___
 
@@ -1222,7 +1222,7 @@ ___
 
 #### Defined in
 
-[src/provider.ts:137](https://github.com/haqq-network/haqq-wallet-provider-sss-react-native/blob/8e08ed7/src/provider.ts#L137)
+[src/provider.ts:201](https://github.com/haqq-network/haqq-wallet-provider-sss-react-native/blob/c0d6e37/src/provider.ts#L201)
 
 ___
 
@@ -1296,27 +1296,26 @@ ___
 
 #### Defined in
 
-[src/provider.ts:143](https://github.com/haqq-network/haqq-wallet-provider-sss-react-native/blob/8e08ed7/src/provider.ts#L143)
+[src/provider.ts:207](https://github.com/haqq-network/haqq-wallet-provider-sss-react-native/blob/c0d6e37/src/provider.ts#L207)
 
 ___
 
 ### initialize
 
-▸ `Static` **initialize**(`web3privateKey`, `questionAnswer`, `cloudShare`, `privateKey`, `getPassword`, `storage`, `serviceProviderOptions`, `storageOptions`, `options`): `Promise`<[`ProviderMpcReactNative`](ProviderMpcReactNative.md)\>
+▸ `Static` **initialize**(`socialPrivateKey`, `cloudShare`, `privateKey`, `verifier`, `token`, `getPassword`, `storage`, `options`): `Promise`<[`ProviderMpcReactNative`](ProviderMpcReactNative.md)\>
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
-| `web3privateKey` | `string` |
-| `questionAnswer` | ``null`` \| `string` |
+| `socialPrivateKey` | ``null`` \| `string` |
 | `cloudShare` | ``null`` \| `string` |
 | `privateKey` | ``null`` \| `string` |
+| `verifier` | `string` |
+| `token` | `string` |
 | `getPassword` | () => `Promise`<`string`\> |
 | `storage` | [`StorageInterface`](../interfaces/StorageInterface.md) |
-| `serviceProviderOptions` | `ServiceProviderArgs` |
-| `storageOptions` | `TorusStorageLayerArgs` |
-| `options` | `Omit`<`ProviderBaseOptions`, ``"getPassword"``\> |
+| `options` | `Omit`<`ProviderBaseOptions`, ``"getPassword"``\> & { `generateSharesUrl`: `string` ; `metadataUrl`: `string`  } |
 
 #### Returns
 
@@ -1324,7 +1323,7 @@ ___
 
 #### Defined in
 
-[src/provider.ts:38](https://github.com/haqq-network/haqq-wallet-provider-sss-react-native/blob/8e08ed7/src/provider.ts#L38)
+[src/provider.ts:41](https://github.com/haqq-network/haqq-wallet-provider-sss-react-native/blob/c0d6e37/src/provider.ts#L41)
 
 ___
 
@@ -1648,4 +1647,4 @@ ___
 
 #### Defined in
 
-[src/provider.ts:153](https://github.com/haqq-network/haqq-wallet-provider-sss-react-native/blob/8e08ed7/src/provider.ts#L153)
+[src/provider.ts:217](https://github.com/haqq-network/haqq-wallet-provider-sss-react-native/blob/c0d6e37/src/provider.ts#L217)
