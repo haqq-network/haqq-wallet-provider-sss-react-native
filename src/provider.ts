@@ -86,7 +86,7 @@ export class ProviderMpcReactNative
       }
     }
 
-    const poly = Polynomial.fromShares(shares);
+    const poly = await Polynomial.fromShares(shares);
 
     if (!socialPrivateKey || privateKey) {
       const index = await generateEntropy(16);
