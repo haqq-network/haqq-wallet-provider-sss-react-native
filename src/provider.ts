@@ -52,7 +52,7 @@ export class ProviderSSSReactNative
     },
   ): Promise<ProviderSSSReactNative> {
     let keyPK = socialPrivateKey;
-    const shares = [];
+    let shares = [];
 
     if (cloudShare) {
       shares.push(JSON.parse(cloudShare));
@@ -74,6 +74,7 @@ export class ProviderSSSReactNative
     }
 
     if (shares.length < 2 || privateKey) {
+      shares = [];
       const pk = privateKey
         ? Buffer.from(privateKey, 'hex')
         : await generateEntropy(32);
@@ -81,7 +82,7 @@ export class ProviderSSSReactNative
       const p = await Polynomial.initialize(pk, 2);
 
       for (let i = 0; i < 2; i++) {
-        const index = await generateEntropy(16);
+        const index = await generateEntropy(32);
         shares.push(p.getShare(index.toString('hex')));
       }
     }
@@ -89,7 +90,7 @@ export class ProviderSSSReactNative
     const poly = await Polynomial.fromShares(shares);
 
     if (!socialPrivateKey || privateKey) {
-      const index = await generateEntropy(16);
+      const index = await generateEntropy(32);
       const tmpSocialShare = poly.getShare(index.toString('hex'));
 
       const p = await Polynomial.initialize(
@@ -154,8 +155,8 @@ export class ProviderSSSReactNative
 
     const {address} = await accountInfo(keyPK);
 
-    if (!cloudShare) {
-      const index = await generateEntropy(16);
+    if (!cloudShare || privateKey) {
+      const index = await generateEntropy(32);
       const tmpCloudShare = poly.getShare(index.toString('hex'));
 
       const stored = await storage.setItem(
@@ -171,7 +172,7 @@ export class ProviderSSSReactNative
       }
     }
 
-    const deviceShareIndex = await generateEntropy(16);
+    const deviceShareIndex = await generateEntropy(32);
     const deviceShare = poly.getShare(deviceShareIndex.toString('hex'));
 
     const pass = await getPassword();
