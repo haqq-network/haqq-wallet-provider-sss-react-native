@@ -174,7 +174,7 @@ export class ProviderMpcReactNative
 
     const deviceShareIndex = await generateEntropy(32);
     const deviceShare = poly.getShare(deviceShareIndex.toString('hex'));
-    deviceShare.share = deviceShare?.share?.padStart?.(64, '0');
+
     const pass = await getPassword();
 
     const sqStore = await encryptShare(deviceShare, pass);
