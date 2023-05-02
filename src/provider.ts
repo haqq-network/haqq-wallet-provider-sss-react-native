@@ -36,8 +36,7 @@ import {ProviderMpcOptions, StorageInterface} from './types';
 
 export class ProviderMpcReactNative
   extends Provider<ProviderMpcOptions>
-  implements ProviderInterface
-{
+  implements ProviderInterface {
   static async initialize(
     socialPrivateKey: string | null,
     cloudShare: string | null,
@@ -174,7 +173,7 @@ export class ProviderMpcReactNative
 
     const deviceShareIndex = await generateEntropy(32);
     const deviceShare = poly.getShare(deviceShareIndex.toString('hex'));
-
+    deviceShare.share = deviceShare?.share?.padStart?.(64, "0");
     const pass = await getPassword();
 
     const sqStore = await encryptShare(deviceShare, pass);
