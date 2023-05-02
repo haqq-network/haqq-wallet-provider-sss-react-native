@@ -80,7 +80,7 @@ export class Polynomial {
       xi = xi.mul(tmpX);
     }
     return {
-      share: sum.umod(Polynomial.curveN)?.toString('hex')?.padStart?.(64, "0"),
+      share: sum.umod(Polynomial.curveN)?.toString('hex')?.padStart?.(64, '0'),
       shareIndex: tmpX.toString('hex'),
       polynomialID: this.polymonialId,
     };
