@@ -46,7 +46,7 @@ describe('polymonial', () => {
     );
 
     expect(poly.getShare(new BN('14', 'hex'))).toEqual({
-      share: '59fa608c1eab07826098cd94c3dd07450ca4ba632b98d7285915d0429e96fe3',
+      share: '059fa608c1eab07826098cd94c3dd07450ca4ba632b98d7285915d0429e96fe3',
       shareIndex: '14',
       polynomialID:
         '9b7fe0884f96d96dbe3b481e9c69e40f9f5b4430cb9eabe6785c83ef2877922a',

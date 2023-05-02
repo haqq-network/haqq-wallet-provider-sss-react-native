@@ -10,7 +10,7 @@ describe('lagrangeInterpolation', () => {
     const privateKey = lagrangeInterpolation(
       [
         new BN(
-          '59fa608c1eab07826098cd94c3dd07450ca4ba632b98d7285915d0429e96fe3',
+          '059fa608c1eab07826098cd94c3dd07450ca4ba632b98d7285915d0429e96fe3',
           'hex',
         ),
         new BN(
@@ -30,7 +30,7 @@ describe('lagrangeInterpolation', () => {
     const privateKey = lagrangeInterpolation(
       [
         new BN(
-          '59fa608c1eab07826098cd94c3dd07450ca4ba632b98d7285915d0429e96fe3',
+          '059fa608c1eab07826098cd94c3dd07450ca4ba632b98d7285915d0429e96fe3',
           'hex',
         ),
         new BN(
