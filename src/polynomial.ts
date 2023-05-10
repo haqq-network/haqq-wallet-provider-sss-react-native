@@ -1,6 +1,7 @@
 import {Buffer} from 'buffer';
 
 import {generateEntropy, hashMessage} from '@haqq/provider-web3-utils';
+import {curveN} from '@haqq/shared-react-native';
 import BN from 'bn.js';
 import {Share} from './types';
 
@@ -13,11 +14,6 @@ type Point = {
 export class Polynomial {
   shares: BN[];
   polymonialId: string;
-
-  static curveN = new BN(
-    'FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFEBAAEDCE6AF48A03BBFD25E8CD0364141',
-    'hex',
-  );
 
   static async initialize(
     privateKey: BN | Buffer | null,
@@ -51,7 +47,7 @@ export class Polynomial {
       for (let k = 0; k < sortedPoints.length; k += 1) {
         let tmp = new BN(sortedPoints[i].y);
         tmp = tmp.mul(coefficients[k]);
-        polynomial[k] = polynomial[k].add(tmp).umod(Polynomial.curveN);
+        polynomial[k] = polynomial[k].add(tmp).umod(curveN);
       }
     }
 
@@ -80,7 +76,7 @@ export class Polynomial {
       xi = xi.mul(tmpX);
     }
     return {
-      share: sum.umod(Polynomial.curveN)?.toString('hex')?.padStart?.(64, '0'),
+      share: sum.umod(curveN)?.toString('hex')?.padStart?.(64, '0'),
       shareIndex: tmpX.toString('hex'),
       polynomialID: this.polymonialId,
     };
@@ -102,8 +98,8 @@ const denominator = (i: number, innerPoints: Point[]) => {
   for (let j = innerPoints.length - 1; j >= 0; j -= 1) {
     if (i !== j) {
       let tmp = new BN(xi);
-      tmp = tmp.sub(innerPoints[j].x).umod(Polynomial.curveN);
-      result = result.mul(tmp).umod(Polynomial.curveN);
+      tmp = tmp.sub(innerPoints[j].x).umod(curveN);
+      result = result.mul(tmp).umod(curveN);
     }
   }
   return result;
@@ -115,7 +111,7 @@ const interpolationPoly = (i: number, innerPoints: Point[]): BN[] => {
   if (d.cmp(new BN(0)) === 0) {
     throw new Error('Denominator for interpolationPoly is 0');
   }
-  coefficients[0] = d.invm(Polynomial.curveN);
+  coefficients[0] = d.invm(curveN);
   for (let k = 0; k < innerPoints.length; k += 1) {
     const newCoefficients = generateEmptyBNArray(innerPoints.length);
     if (k !== i) {
@@ -129,12 +125,12 @@ const interpolationPoly = (i: number, innerPoints: Point[]): BN[] => {
       for (; j >= 0; j -= 1) {
         newCoefficients[j + 1] = newCoefficients[j + 1]
           .add(coefficients[j])
-          .umod(Polynomial.curveN);
+          .umod(curveN);
         let tmp = new BN(innerPoints[k].x);
-        tmp = tmp.mul(coefficients[j]).umod(Polynomial.curveN);
+        tmp = tmp.mul(coefficients[j]).umod(curveN);
         newCoefficients[j] = newCoefficients[j]
           .sub(tmp)
-          .umod(Polynomial.curveN);
+          .umod(curveN);
       }
       coefficients = newCoefficients;
     }
