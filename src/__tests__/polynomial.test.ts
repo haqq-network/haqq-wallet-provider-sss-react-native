@@ -23,6 +23,7 @@ jest.mock('@haqq/provider-web3-utils', () => {
       ),
   };
 });
+
 describe('polymonial', () => {
   afterEach(() => {
     jest.resetAllMocks();
