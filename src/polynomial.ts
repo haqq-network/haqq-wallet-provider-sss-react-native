@@ -128,9 +128,7 @@ const interpolationPoly = (i: number, innerPoints: Point[]): BN[] => {
           .umod(curveN);
         let tmp = new BN(innerPoints[k].x);
         tmp = tmp.mul(coefficients[j]).umod(curveN);
-        newCoefficients[j] = newCoefficients[j]
-          .sub(tmp)
-          .umod(curveN);
+        newCoefficients[j] = newCoefficients[j].sub(tmp).umod(curveN);
       }
       coefficients = newCoefficients;
     }
