@@ -1,4 +1,4 @@
-[@haqq/provider-mpc-react-native - v0.0.6](../README.md) / [Exports](../modules.md) / Polynomial
+[@haqq/provider-mpc-react-native - v0.0.9](../README.md) / [Exports](../modules.md) / Polynomial
 
 # Class: Polynomial
 
@@ -12,7 +12,6 @@
 
 - [polymonialId](Polynomial.md#polymonialid)
 - [shares](Polynomial.md#shares)
-- [curveN](Polynomial.md#curven)
 
 ### Methods
 
@@ -36,7 +35,7 @@
 
 #### Defined in
 
-[src/polynomial.ts:65](https://github.com/haqq-network/haqq-wallet-provider-mpc-react-native/blob/c0d6e37/src/polynomial.ts#L65)
+[src/polynomial.ts:61](https://github.com/haqq-network/haqq-wallet-provider-mpc-react-native/blob/a5c6066/src/polynomial.ts#L61)
 
 ## Properties
 
@@ -46,7 +45,7 @@
 
 #### Defined in
 
-[src/polynomial.ts:15](https://github.com/haqq-network/haqq-wallet-provider-mpc-react-native/blob/c0d6e37/src/polynomial.ts#L15)
+[src/polynomial.ts:16](https://github.com/haqq-network/haqq-wallet-provider-mpc-react-native/blob/a5c6066/src/polynomial.ts#L16)
 
 ___
 
@@ -56,17 +55,7 @@ ___
 
 #### Defined in
 
-[src/polynomial.ts:14](https://github.com/haqq-network/haqq-wallet-provider-mpc-react-native/blob/c0d6e37/src/polynomial.ts#L14)
-
-___
-
-### curveN
-
-▪ `Static` **curveN**: `BN`
-
-#### Defined in
-
-[src/polynomial.ts:17](https://github.com/haqq-network/haqq-wallet-provider-mpc-react-native/blob/c0d6e37/src/polynomial.ts#L17)
+[src/polynomial.ts:15](https://github.com/haqq-network/haqq-wallet-provider-mpc-react-native/blob/a5c6066/src/polynomial.ts#L15)
 
 ## Methods
 
@@ -80,7 +69,7 @@ ___
 
 #### Defined in
 
-[src/polynomial.ts:70](https://github.com/haqq-network/haqq-wallet-provider-mpc-react-native/blob/c0d6e37/src/polynomial.ts#L70)
+[src/polynomial.ts:66](https://github.com/haqq-network/haqq-wallet-provider-mpc-react-native/blob/a5c6066/src/polynomial.ts#L66)
 
 ___
 
@@ -100,7 +89,7 @@ ___
 
 #### Defined in
 
-[src/polynomial.ts:74](https://github.com/haqq-network/haqq-wallet-provider-mpc-react-native/blob/c0d6e37/src/polynomial.ts#L74)
+[src/polynomial.ts:70](https://github.com/haqq-network/haqq-wallet-provider-mpc-react-native/blob/a5c6066/src/polynomial.ts#L70)
 
 ___
 
@@ -120,7 +109,7 @@ ___
 
 #### Defined in
 
-[src/polynomial.ts:42](https://github.com/haqq-network/haqq-wallet-provider-mpc-react-native/blob/c0d6e37/src/polynomial.ts#L42)
+[src/polynomial.ts:38](https://github.com/haqq-network/haqq-wallet-provider-mpc-react-native/blob/a5c6066/src/polynomial.ts#L38)
 
 ___
 
@@ -141,4 +130,4 @@ ___
 
 #### Defined in
 
-[src/polynomial.ts:22](https://github.com/haqq-network/haqq-wallet-provider-mpc-react-native/blob/c0d6e37/src/polynomial.ts#L22)
+[src/polynomial.ts:18](https://github.com/haqq-network/haqq-wallet-provider-mpc-react-native/blob/a5c6066/src/polynomial.ts#L18)

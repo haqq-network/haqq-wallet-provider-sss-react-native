@@ -18,6 +18,8 @@ import {
   sign,
 } from '@haqq/provider-web3-utils';
 import {
+  decryptShare,
+  encryptShare,
   getMetadataValue,
   jsonrpcRequest,
   setMetadataValue,
@@ -27,8 +29,6 @@ import {
 import BN from 'bn.js';
 import EncryptedStorage from 'react-native-encrypted-storage';
 import {ITEM_KEY} from './constants';
-import {decryptShare} from './decrypt-share';
-import {encryptShare} from './encrypt-share';
 import {getSeed} from './get-seed';
 import {lagrangeInterpolation} from './lagrange-interpolation';
 import {Polynomial} from './polynomial';

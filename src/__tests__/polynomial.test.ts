@@ -1,6 +1,16 @@
 import BN from 'bn.js';
 import {Polynomial} from '../polynomial';
 
+jest.mock('@haqq/shared-react-native', () => {
+  return {
+    __esModule: true,
+    curveN: new BN(
+      'FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFEBAAEDCE6AF48A03BBFD25E8CD0364141',
+      'hex',
+    ),
+  };
+});
+
 jest.mock('@haqq/provider-web3-utils', () => {
   return {
     __esModule: true,
@@ -23,6 +33,7 @@ jest.mock('@haqq/provider-web3-utils', () => {
       ),
   };
 });
+
 describe('polymonial', () => {
   afterEach(() => {
     jest.resetAllMocks();
