@@ -1,5 +1,5 @@
+import {curveN} from '@haqq/shared-react-native';
 import BN from 'bn.js';
-import {curveN} from './constants';
 
 export function lagrangeInterpolation(shares: BN[], nodeIndex: BN[]): BN {
   let secret = new BN(0);

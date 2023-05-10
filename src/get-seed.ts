@@ -2,10 +2,10 @@ import {
   generateMnemonicFromEntropy,
   seedFromMnemonic,
 } from '@haqq/provider-web3-utils';
+import {decryptShare} from '@haqq/shared-react-native';
 import BN from 'bn.js';
 import EncryptedStorage from 'react-native-encrypted-storage';
 import {ITEM_KEY} from './constants';
-import {decryptShare} from './decrypt-share';
 import {lagrangeInterpolation} from './lagrange-interpolation';
 import {StorageInterface} from './types';
 
