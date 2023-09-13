@@ -38,9 +38,22 @@ export class ProviderSSSReactNative
   extends Provider<ProviderSSSOptions>
   implements ProviderInterface
 {
+  /**
+   * Initialize SSS provider
+   * @param socialPrivateKey private key which we get from social service
+   * @param cloudShare encrypted share from cloud storage
+   * @param localShare encrypted share from local storage
+   * @param privateKey private key which rewrite current shares
+   * @param verifier verifier name
+   * @param token token for verifier name
+   * @param getPassword function which return password for decrypt share
+   * @param storage storage for save share
+   * @param options options for provider and metadata
+   */
   static async initialize(
     socialPrivateKey: string | null,
     cloudShare: string | null,
+    localShare: string | null,
     privateKey: string | null,
     verifier: string,
     token: string,
@@ -56,6 +69,10 @@ export class ProviderSSSReactNative
 
     if (cloudShare) {
       shares.push(JSON.parse(cloudShare));
+    }
+
+    if (localShare) {
+      shares.push(JSON.parse(localShare));
     }
 
     if (socialPrivateKey) {

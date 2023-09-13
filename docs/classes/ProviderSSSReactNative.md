@@ -1,12 +1,12 @@
-[@haqq/provider-sss-react-native - v0.0.9](../README.md) / [Exports](../modules.md) / ProviderMpcReactNative
+[@haqq/provider-sss-react-native - v0.0.10](../README.md) / [Exports](../modules.md) / ProviderSSSReactNative
 
-# Class: ProviderMpcReactNative
+# Class: ProviderSSSReactNative
 
 ## Hierarchy
 
-- `Provider`<[`ProviderMpcOptions`](../modules.md#providersssoptions)\>
+- `Provider`<[`ProviderSSSOptions`](../modules.md#providersssoptions)\>
 
-  ↳ **`ProviderMpcReactNative`**
+  ↳ **`ProviderSSSReactNative`**
 
 ## Implements
 
@@ -16,70 +16,70 @@
 
 ### Constructors
 
-- [constructor](ProviderMpcReactNative.md#constructor)
+- [constructor](ProviderSSSReactNative.md#constructor)
 
 ### Properties
 
-- [\_options](ProviderMpcReactNative.md#_options)
-- [captureRejectionSymbol](ProviderMpcReactNative.md#capturerejectionsymbol)
-- [captureRejections](ProviderMpcReactNative.md#capturerejections)
-- [defaultMaxListeners](ProviderMpcReactNative.md#defaultmaxlisteners)
-- [errorMonitor](ProviderMpcReactNative.md#errormonitor)
+- [\_options](ProviderSSSReactNative.md#_options)
+- [captureRejectionSymbol](ProviderSSSReactNative.md#capturerejectionsymbol)
+- [captureRejections](ProviderSSSReactNative.md#capturerejections)
+- [defaultMaxListeners](ProviderSSSReactNative.md#defaultmaxlisteners)
+- [errorMonitor](ProviderSSSReactNative.md#errormonitor)
 
 ### Methods
 
-- [abort](ProviderMpcReactNative.md#abort)
-- [addListener](ProviderMpcReactNative.md#addlistener)
-- [catchError](ProviderMpcReactNative.md#catcherror)
-- [clean](ProviderMpcReactNative.md#clean)
-- [emit](ProviderMpcReactNative.md#emit)
-- [eventNames](ProviderMpcReactNative.md#eventnames)
-- [getAccountInfo](ProviderMpcReactNative.md#getaccountinfo)
-- [getIdentifier](ProviderMpcReactNative.md#getidentifier)
-- [getMaxListeners](ProviderMpcReactNative.md#getmaxlisteners)
-- [getPrivateKey](ProviderMpcReactNative.md#getprivatekey)
-- [isShareSaved](ProviderMpcReactNative.md#issharesaved)
-- [listenerCount](ProviderMpcReactNative.md#listenercount)
-- [listeners](ProviderMpcReactNative.md#listeners)
-- [off](ProviderMpcReactNative.md#off)
-- [on](ProviderMpcReactNative.md#on)
-- [once](ProviderMpcReactNative.md#once)
-- [prependListener](ProviderMpcReactNative.md#prependlistener)
-- [prependOnceListener](ProviderMpcReactNative.md#prependoncelistener)
-- [rawListeners](ProviderMpcReactNative.md#rawlisteners)
-- [removeAllListeners](ProviderMpcReactNative.md#removealllisteners)
-- [removeListener](ProviderMpcReactNative.md#removelistener)
-- [setMaxListeners](ProviderMpcReactNative.md#setmaxlisteners)
-- [signPersonalMessage](ProviderMpcReactNative.md#signpersonalmessage)
-- [signTransaction](ProviderMpcReactNative.md#signtransaction)
-- [signTypedData](ProviderMpcReactNative.md#signtypeddata)
-- [tryToSaveShareToStore](ProviderMpcReactNative.md#trytosavesharetostore)
-- [updatePin](ProviderMpcReactNative.md#updatepin)
-- [getAccounts](ProviderMpcReactNative.md#getaccounts)
-- [getEventListeners](ProviderMpcReactNative.md#geteventlisteners)
-- [getStoragesForAccount](ProviderMpcReactNative.md#getstoragesforaccount)
-- [initialize](ProviderMpcReactNative.md#initialize)
-- [listenerCount](ProviderMpcReactNative.md#listenercount-1)
-- [on](ProviderMpcReactNative.md#on-1)
-- [once](ProviderMpcReactNative.md#once-1)
-- [setMaxListeners](ProviderMpcReactNative.md#setmaxlisteners-1)
-- [setStorageForAccount](ProviderMpcReactNative.md#setstorageforaccount)
+- [abort](ProviderSSSReactNative.md#abort)
+- [addListener](ProviderSSSReactNative.md#addlistener)
+- [catchError](ProviderSSSReactNative.md#catcherror)
+- [clean](ProviderSSSReactNative.md#clean)
+- [emit](ProviderSSSReactNative.md#emit)
+- [eventNames](ProviderSSSReactNative.md#eventnames)
+- [getAccountInfo](ProviderSSSReactNative.md#getaccountinfo)
+- [getIdentifier](ProviderSSSReactNative.md#getidentifier)
+- [getMaxListeners](ProviderSSSReactNative.md#getmaxlisteners)
+- [getPrivateKey](ProviderSSSReactNative.md#getprivatekey)
+- [isShareSaved](ProviderSSSReactNative.md#issharesaved)
+- [listenerCount](ProviderSSSReactNative.md#listenercount)
+- [listeners](ProviderSSSReactNative.md#listeners)
+- [off](ProviderSSSReactNative.md#off)
+- [on](ProviderSSSReactNative.md#on)
+- [once](ProviderSSSReactNative.md#once)
+- [prependListener](ProviderSSSReactNative.md#prependlistener)
+- [prependOnceListener](ProviderSSSReactNative.md#prependoncelistener)
+- [rawListeners](ProviderSSSReactNative.md#rawlisteners)
+- [removeAllListeners](ProviderSSSReactNative.md#removealllisteners)
+- [removeListener](ProviderSSSReactNative.md#removelistener)
+- [setMaxListeners](ProviderSSSReactNative.md#setmaxlisteners)
+- [signPersonalMessage](ProviderSSSReactNative.md#signpersonalmessage)
+- [signTransaction](ProviderSSSReactNative.md#signtransaction)
+- [signTypedData](ProviderSSSReactNative.md#signtypeddata)
+- [tryToSaveShareToStore](ProviderSSSReactNative.md#trytosavesharetostore)
+- [updatePin](ProviderSSSReactNative.md#updatepin)
+- [getAccounts](ProviderSSSReactNative.md#getaccounts)
+- [getEventListeners](ProviderSSSReactNative.md#geteventlisteners)
+- [getStoragesForAccount](ProviderSSSReactNative.md#getstoragesforaccount)
+- [initialize](ProviderSSSReactNative.md#initialize)
+- [listenerCount](ProviderSSSReactNative.md#listenercount-1)
+- [on](ProviderSSSReactNative.md#on-1)
+- [once](ProviderSSSReactNative.md#once-1)
+- [setMaxListeners](ProviderSSSReactNative.md#setmaxlisteners-1)
+- [setStorageForAccount](ProviderSSSReactNative.md#setstorageforaccount)
 
 ## Constructors
 
 ### constructor
 
-• **new ProviderMpcReactNative**(`options`)
+• **new ProviderSSSReactNative**(`options`)
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
-| `options` | [`ProviderMpcOptions`](../modules.md#providersssoptions) & `ProviderBaseOptions` |
+| `options` | [`ProviderSSSOptions`](../modules.md#providersssoptions) & `ProviderBaseOptions` |
 
 #### Inherited from
 
-Provider<ProviderMpcOptions\>.constructor
+Provider<ProviderSSSOptions\>.constructor
 
 #### Defined in
 
@@ -89,7 +89,7 @@ node_modules/@haqq/provider-base/dist/provider.d.ts:6
 
 ### \_options
 
-• `Protected` **\_options**: [`ProviderMpcOptions`](../modules.md#providersssoptions) & `ProviderBaseOptions`
+• `Protected` **\_options**: [`ProviderSSSOptions`](../modules.md#providersssoptions) & `ProviderBaseOptions`
 
 #### Inherited from
 
@@ -103,7 +103,7 @@ ___
 
 ### captureRejectionSymbol
 
-▪ `Static` `Readonly` **captureRejectionSymbol**: typeof [`captureRejectionSymbol`](ProviderMpcReactNative.md#capturerejectionsymbol)
+▪ `Static` `Readonly` **captureRejectionSymbol**: typeof [`captureRejectionSymbol`](ProviderSSSReactNative.md#capturerejectionsymbol)
 
 #### Inherited from
 
@@ -147,7 +147,7 @@ ___
 
 ### errorMonitor
 
-▪ `Static` `Readonly` **errorMonitor**: typeof [`errorMonitor`](ProviderMpcReactNative.md#errormonitor)
+▪ `Static` `Readonly` **errorMonitor**: typeof [`errorMonitor`](ProviderSSSReactNative.md#errormonitor)
 
 This symbol shall be used to install a listener for only monitoring `'error'`
 events. Listeners installed using this symbol are called before the regular
@@ -191,7 +191,7 @@ ___
 
 ### addListener
 
-▸ **addListener**(`eventName`, `listener`): [`ProviderMpcReactNative`](ProviderMpcReactNative.md)
+▸ **addListener**(`eventName`, `listener`): [`ProviderSSSReactNative`](ProviderSSSReactNative.md)
 
 Alias for `emitter.on(eventName, listener)`.
 
@@ -208,7 +208,7 @@ v0.1.26
 
 #### Returns
 
-[`ProviderMpcReactNative`](ProviderMpcReactNative.md)
+[`ProviderSSSReactNative`](ProviderSSSReactNative.md)
 
 #### Implementation of
 
@@ -409,7 +409,7 @@ Provider.getAccountInfo
 
 #### Defined in
 
-[src/provider.ts:240](https://github.com/haqq-network/haqq-wallet-provider-sss-react-native/blob/a5c6066/src/provider.ts#L240)
+[src/provider.ts:257](https://github.com/haqq-network/haqq-wallet-provider-sss-react-native/blob/1f46277/src/provider.ts#L257)
 
 ___
 
@@ -431,7 +431,7 @@ Provider.getIdentifier
 
 #### Defined in
 
-[src/provider.ts:236](https://github.com/haqq-network/haqq-wallet-provider-sss-react-native/blob/a5c6066/src/provider.ts#L236)
+[src/provider.ts:253](https://github.com/haqq-network/haqq-wallet-provider-sss-react-native/blob/1f46277/src/provider.ts#L253)
 
 ___
 
@@ -440,7 +440,7 @@ ___
 ▸ **getMaxListeners**(): `number`
 
 Returns the current max listener value for the `EventEmitter` which is either
-set by `emitter.setMaxListeners(n)` or defaults to [defaultMaxListeners](ProviderMpcReactNative.md#defaultmaxlisteners).
+set by `emitter.setMaxListeners(n)` or defaults to [defaultMaxListeners](ProviderSSSReactNative.md#defaultmaxlisteners).
 
 **`Since`**
 
@@ -508,7 +508,7 @@ ___
 
 #### Defined in
 
-[src/provider.ts:417](https://github.com/haqq-network/haqq-wallet-provider-sss-react-native/blob/a5c6066/src/provider.ts#L417)
+[src/provider.ts:434](https://github.com/haqq-network/haqq-wallet-provider-sss-react-native/blob/1f46277/src/provider.ts#L434)
 
 ___
 
@@ -593,7 +593,7 @@ ___
 
 ### off
 
-▸ **off**(`eventName`, `listener`): [`ProviderMpcReactNative`](ProviderMpcReactNative.md)
+▸ **off**(`eventName`, `listener`): [`ProviderSSSReactNative`](ProviderSSSReactNative.md)
 
 Alias for `emitter.removeListener()`.
 
@@ -610,7 +610,7 @@ v10.0.0
 
 #### Returns
 
-[`ProviderMpcReactNative`](ProviderMpcReactNative.md)
+[`ProviderSSSReactNative`](ProviderSSSReactNative.md)
 
 #### Implementation of
 
@@ -628,7 +628,7 @@ ___
 
 ### on
 
-▸ **on**(`eventName`, `listener`): [`ProviderMpcReactNative`](ProviderMpcReactNative.md)
+▸ **on**(`eventName`, `listener`): [`ProviderSSSReactNative`](ProviderSSSReactNative.md)
 
 Adds the `listener` function to the end of the listeners array for the
 event named `eventName`. No checks are made to see if the `listener` has
@@ -670,7 +670,7 @@ v0.1.101
 
 #### Returns
 
-[`ProviderMpcReactNative`](ProviderMpcReactNative.md)
+[`ProviderSSSReactNative`](ProviderSSSReactNative.md)
 
 #### Implementation of
 
@@ -688,7 +688,7 @@ ___
 
 ### once
 
-▸ **once**(`eventName`, `listener`): [`ProviderMpcReactNative`](ProviderMpcReactNative.md)
+▸ **once**(`eventName`, `listener`): [`ProviderSSSReactNative`](ProviderSSSReactNative.md)
 
 Adds a **one-time**`listener` function for the event named `eventName`. The
 next time `eventName` is triggered, this listener is removed and then invoked.
@@ -728,7 +728,7 @@ v0.3.0
 
 #### Returns
 
-[`ProviderMpcReactNative`](ProviderMpcReactNative.md)
+[`ProviderSSSReactNative`](ProviderSSSReactNative.md)
 
 #### Implementation of
 
@@ -746,7 +746,7 @@ ___
 
 ### prependListener
 
-▸ **prependListener**(`eventName`, `listener`): [`ProviderMpcReactNative`](ProviderMpcReactNative.md)
+▸ **prependListener**(`eventName`, `listener`): [`ProviderSSSReactNative`](ProviderSSSReactNative.md)
 
 Adds the `listener` function to the _beginning_ of the listeners array for the
 event named `eventName`. No checks are made to see if the `listener` has
@@ -774,7 +774,7 @@ v6.0.0
 
 #### Returns
 
-[`ProviderMpcReactNative`](ProviderMpcReactNative.md)
+[`ProviderSSSReactNative`](ProviderSSSReactNative.md)
 
 #### Implementation of
 
@@ -792,7 +792,7 @@ ___
 
 ### prependOnceListener
 
-▸ **prependOnceListener**(`eventName`, `listener`): [`ProviderMpcReactNative`](ProviderMpcReactNative.md)
+▸ **prependOnceListener**(`eventName`, `listener`): [`ProviderSSSReactNative`](ProviderSSSReactNative.md)
 
 Adds a **one-time**`listener` function for the event named `eventName` to the _beginning_ of the listeners array. The next time `eventName` is triggered, this
 listener is removed, and then invoked.
@@ -818,7 +818,7 @@ v6.0.0
 
 #### Returns
 
-[`ProviderMpcReactNative`](ProviderMpcReactNative.md)
+[`ProviderSSSReactNative`](ProviderSSSReactNative.md)
 
 #### Implementation of
 
@@ -896,7 +896,7 @@ ___
 
 ### removeAllListeners
 
-▸ **removeAllListeners**(`event?`): [`ProviderMpcReactNative`](ProviderMpcReactNative.md)
+▸ **removeAllListeners**(`event?`): [`ProviderSSSReactNative`](ProviderSSSReactNative.md)
 
 Removes all listeners, or those of the specified `eventName`.
 
@@ -918,7 +918,7 @@ v0.1.26
 
 #### Returns
 
-[`ProviderMpcReactNative`](ProviderMpcReactNative.md)
+[`ProviderSSSReactNative`](ProviderSSSReactNative.md)
 
 #### Implementation of
 
@@ -936,7 +936,7 @@ ___
 
 ### removeListener
 
-▸ **removeListener**(`eventName`, `listener`): [`ProviderMpcReactNative`](ProviderMpcReactNative.md)
+▸ **removeListener**(`eventName`, `listener`): [`ProviderSSSReactNative`](ProviderSSSReactNative.md)
 
 Removes the specified `listener` from the listener array for the event named`eventName`.
 
@@ -1031,7 +1031,7 @@ v0.1.26
 
 #### Returns
 
-[`ProviderMpcReactNative`](ProviderMpcReactNative.md)
+[`ProviderSSSReactNative`](ProviderSSSReactNative.md)
 
 #### Implementation of
 
@@ -1049,7 +1049,7 @@ ___
 
 ### setMaxListeners
 
-▸ **setMaxListeners**(`n`): [`ProviderMpcReactNative`](ProviderMpcReactNative.md)
+▸ **setMaxListeners**(`n`): [`ProviderSSSReactNative`](ProviderSSSReactNative.md)
 
 By default `EventEmitter`s will print a warning if more than `10` listeners are
 added for a particular event. This is a useful default that helps finding
@@ -1070,7 +1070,7 @@ v0.3.5
 
 #### Returns
 
-[`ProviderMpcReactNative`](ProviderMpcReactNative.md)
+[`ProviderSSSReactNative`](ProviderSSSReactNative.md)
 
 #### Implementation of
 
@@ -1111,7 +1111,7 @@ Provider.signPersonalMessage
 
 #### Defined in
 
-[src/provider.ts:315](https://github.com/haqq-network/haqq-wallet-provider-sss-react-native/blob/a5c6066/src/provider.ts#L315)
+[src/provider.ts:332](https://github.com/haqq-network/haqq-wallet-provider-sss-react-native/blob/1f46277/src/provider.ts#L332)
 
 ___
 
@@ -1140,7 +1140,7 @@ Provider.signTransaction
 
 #### Defined in
 
-[src/provider.ts:274](https://github.com/haqq-network/haqq-wallet-provider-sss-react-native/blob/a5c6066/src/provider.ts#L274)
+[src/provider.ts:291](https://github.com/haqq-network/haqq-wallet-provider-sss-react-native/blob/1f46277/src/provider.ts#L291)
 
 ___
 
@@ -1170,7 +1170,7 @@ Provider.signTypedData
 
 #### Defined in
 
-[src/provider.ts:358](https://github.com/haqq-network/haqq-wallet-provider-sss-react-native/blob/a5c6066/src/provider.ts#L358)
+[src/provider.ts:375](https://github.com/haqq-network/haqq-wallet-provider-sss-react-native/blob/1f46277/src/provider.ts#L375)
 
 ___
 
@@ -1190,7 +1190,7 @@ ___
 
 #### Defined in
 
-[src/provider.ts:449](https://github.com/haqq-network/haqq-wallet-provider-sss-react-native/blob/a5c6066/src/provider.ts#L449)
+[src/provider.ts:466](https://github.com/haqq-network/haqq-wallet-provider-sss-react-native/blob/1f46277/src/provider.ts#L466)
 
 ___
 
@@ -1218,7 +1218,7 @@ Provider.updatePin
 
 #### Defined in
 
-[src/provider.ts:393](https://github.com/haqq-network/haqq-wallet-provider-sss-react-native/blob/a5c6066/src/provider.ts#L393)
+[src/provider.ts:410](https://github.com/haqq-network/haqq-wallet-provider-sss-react-native/blob/1f46277/src/provider.ts#L410)
 
 ___
 
@@ -1232,7 +1232,7 @@ ___
 
 #### Defined in
 
-[src/provider.ts:202](https://github.com/haqq-network/haqq-wallet-provider-sss-react-native/blob/a5c6066/src/provider.ts#L202)
+[src/provider.ts:219](https://github.com/haqq-network/haqq-wallet-provider-sss-react-native/blob/1f46277/src/provider.ts#L219)
 
 ___
 
@@ -1306,34 +1306,37 @@ ___
 
 #### Defined in
 
-[src/provider.ts:208](https://github.com/haqq-network/haqq-wallet-provider-sss-react-native/blob/a5c6066/src/provider.ts#L208)
+[src/provider.ts:225](https://github.com/haqq-network/haqq-wallet-provider-sss-react-native/blob/1f46277/src/provider.ts#L225)
 
 ___
 
 ### initialize
 
-▸ `Static` **initialize**(`socialPrivateKey`, `cloudShare`, `privateKey`, `verifier`, `token`, `getPassword`, `storage`, `options`): `Promise`<[`ProviderMpcReactNative`](ProviderMpcReactNative.md)\>
+▸ `Static` **initialize**(`socialPrivateKey`, `cloudShare`, `localShare`, `privateKey`, `verifier`, `token`, `getPassword`, `storage`, `options`): `Promise`<[`ProviderSSSReactNative`](ProviderSSSReactNative.md)\>
+
+Initialize SSS provider
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `socialPrivateKey` | ``null`` \| `string` |
-| `cloudShare` | ``null`` \| `string` |
-| `privateKey` | ``null`` \| `string` |
-| `verifier` | `string` |
-| `token` | `string` |
-| `getPassword` | () => `Promise`<`string`\> |
-| `storage` | [`StorageInterface`](../interfaces/StorageInterface.md) |
-| `options` | `Omit`<`ProviderBaseOptions`, ``"getPassword"``\> & { `generateSharesUrl`: `string` ; `metadataUrl`: `string`  } |
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `socialPrivateKey` | ``null`` \| `string` | private key which we get from social service |
+| `cloudShare` | ``null`` \| `string` | encrypted share from cloud storage |
+| `localShare` | ``null`` \| `string` | encrypted share from local storage |
+| `privateKey` | ``null`` \| `string` | private key which rewrite current shares |
+| `verifier` | `string` | verifier name |
+| `token` | `string` | token for verifier name |
+| `getPassword` | () => `Promise`<`string`\> | function which return password for decrypt share |
+| `storage` | [`StorageInterface`](../interfaces/StorageInterface.md) | storage for save share |
+| `options` | `Omit`<`ProviderBaseOptions`, ``"getPassword"``\> & { `generateSharesUrl`: `string` ; `metadataUrl`: `string`  } | options for provider and metadata |
 
 #### Returns
 
-`Promise`<[`ProviderMpcReactNative`](ProviderMpcReactNative.md)\>
+`Promise`<[`ProviderSSSReactNative`](ProviderSSSReactNative.md)\>
 
 #### Defined in
 
-[src/provider.ts:41](https://github.com/haqq-network/haqq-wallet-provider-sss-react-native/blob/a5c6066/src/provider.ts#L41)
+[src/provider.ts:53](https://github.com/haqq-network/haqq-wallet-provider-sss-react-native/blob/1f46277/src/provider.ts#L53)
 
 ___
 
@@ -1653,4 +1656,4 @@ ___
 
 #### Defined in
 
-[src/provider.ts:218](https://github.com/haqq-network/haqq-wallet-provider-sss-react-native/blob/a5c6066/src/provider.ts#L218)
+[src/provider.ts:235](https://github.com/haqq-network/haqq-wallet-provider-sss-react-native/blob/1f46277/src/provider.ts#L235)

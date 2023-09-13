@@ -1,4 +1,4 @@
-@haqq/provider-mpc-react-native / [Exports](modules.md)
+@haqq/provider-sss-react-native / [Exports](modules.md)
 
 # Provider for multi party connection on react-native platform
 

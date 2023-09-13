@@ -1,13 +1,13 @@
-[@haqq/provider-sss-react-native - v0.0.9](README.md) / Exports
+[@haqq/provider-sss-react-native - v0.0.10](README.md) / Exports
 
-# @haqq/provider-sss-react-native - v0.0.9
+# @haqq/provider-sss-react-native - v0.0.10
 
 ## Table of contents
 
 ### Classes
 
 - [Polynomial](classes/Polynomial.md)
-- [ProviderMpcReactNative](classes/ProviderMpcReactNative.md)
+- [ProviderSSSReactNative](classes/ProviderSSSReactNative.md)
 
 ### Interfaces
 
@@ -15,7 +15,7 @@
 
 ### Type Aliases
 
-- [ProviderMpcOptions](modules.md#providersssoptions)
+- [ProviderSSSOptions](modules.md#providersssoptions)
 - [Share](modules.md#share)
 - [ShareEncrypted](modules.md#shareencrypted)
 
@@ -25,9 +25,9 @@
 
 ## Type Aliases
 
-### ProviderMpcOptions
+### ProviderSSSOptions
 
-Ƭ **ProviderMpcOptions**: `Object`
+Ƭ **ProviderSSSOptions**: `Object`
 
 #### Type declaration
 
@@ -39,7 +39,7 @@
 
 #### Defined in
 
-[src/types.ts:13](https://github.com/haqq-network/haqq-wallet-provider-sss-react-native/blob/a5c6066/src/types.ts#L13)
+[src/types.ts:13](https://github.com/haqq-network/haqq-wallet-provider-sss-react-native/blob/1f46277/src/types.ts#L13)
 
 ___
 
@@ -57,7 +57,7 @@ ___
 
 #### Defined in
 
-[src/types.ts:19](https://github.com/haqq-network/haqq-wallet-provider-sss-react-native/blob/a5c6066/src/types.ts#L19)
+[src/types.ts:19](https://github.com/haqq-network/haqq-wallet-provider-sss-react-native/blob/1f46277/src/types.ts#L19)
 
 ___
 
@@ -76,7 +76,7 @@ ___
 
 #### Defined in
 
-[src/types.ts:25](https://github.com/haqq-network/haqq-wallet-provider-sss-react-native/blob/a5c6066/src/types.ts#L25)
+[src/types.ts:25](https://github.com/haqq-network/haqq-wallet-provider-sss-react-native/blob/1f46277/src/types.ts#L25)
 
 ## Functions
 
@@ -97,4 +97,4 @@ ___
 
 #### Defined in
 
-[src/lagrange-interpolation.ts:4](https://github.com/haqq-network/haqq-wallet-provider-sss-react-native/blob/a5c6066/src/lagrange-interpolation.ts#L4)
+[src/lagrange-interpolation.ts:4](https://github.com/haqq-network/haqq-wallet-provider-sss-react-native/blob/1f46277/src/lagrange-interpolation.ts#L4)
