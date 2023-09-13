@@ -1,6 +1,6 @@
-[@haqq/provider-sss-react-native - v0.0.10](README.md) / Exports
+[@haqq/provider-sss-react-native - v0.0.11](README.md) / Exports
 
-# @haqq/provider-sss-react-native - v0.0.10
+# @haqq/provider-sss-react-native - v0.0.11
 
 ## Table of contents
 
@@ -39,7 +39,7 @@
 
 #### Defined in
 
-[src/types.ts:13](https://github.com/haqq-network/haqq-wallet-provider-sss-react-native/blob/1f46277/src/types.ts#L13)
+[src/types.ts:13](https://github.com/haqq-network/haqq-wallet-provider-sss-react-native/blob/e7b3077/src/types.ts#L13)
 
 ___
 
@@ -57,7 +57,7 @@ ___
 
 #### Defined in
 
-[src/types.ts:19](https://github.com/haqq-network/haqq-wallet-provider-sss-react-native/blob/1f46277/src/types.ts#L19)
+[src/types.ts:19](https://github.com/haqq-network/haqq-wallet-provider-sss-react-native/blob/e7b3077/src/types.ts#L19)
 
 ___
 
@@ -76,7 +76,7 @@ ___
 
 #### Defined in
 
-[src/types.ts:25](https://github.com/haqq-network/haqq-wallet-provider-sss-react-native/blob/1f46277/src/types.ts#L25)
+[src/types.ts:25](https://github.com/haqq-network/haqq-wallet-provider-sss-react-native/blob/e7b3077/src/types.ts#L25)
 
 ## Functions
 
@@ -97,4 +97,4 @@ ___
 
 #### Defined in
 
-[src/lagrange-interpolation.ts:4](https://github.com/haqq-network/haqq-wallet-provider-sss-react-native/blob/1f46277/src/lagrange-interpolation.ts#L4)
+[src/lagrange-interpolation.ts:4](https://github.com/haqq-network/haqq-wallet-provider-sss-react-native/blob/e7b3077/src/lagrange-interpolation.ts#L4)

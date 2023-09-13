@@ -1,4 +1,4 @@
-[@haqq/provider-sss-react-native - v0.0.10](../README.md) / [Exports](../modules.md) / ProviderSSSReactNative
+[@haqq/provider-sss-react-native - v0.0.11](../README.md) / [Exports](../modules.md) / ProviderSSSReactNative
 
 # Class: ProviderSSSReactNative
 
@@ -37,6 +37,7 @@
 - [getAccountInfo](ProviderSSSReactNative.md#getaccountinfo)
 - [getIdentifier](ProviderSSSReactNative.md#getidentifier)
 - [getMaxListeners](ProviderSSSReactNative.md#getmaxlisteners)
+- [getMnemonicPhrase](ProviderSSSReactNative.md#getmnemonicphrase)
 - [getPrivateKey](ProviderSSSReactNative.md#getprivatekey)
 - [isShareSaved](ProviderSSSReactNative.md#issharesaved)
 - [listenerCount](ProviderSSSReactNative.md#listenercount)
@@ -409,7 +410,7 @@ Provider.getAccountInfo
 
 #### Defined in
 
-[src/provider.ts:257](https://github.com/haqq-network/haqq-wallet-provider-sss-react-native/blob/1f46277/src/provider.ts#L257)
+[src/provider.ts:257](https://github.com/haqq-network/haqq-wallet-provider-sss-react-native/blob/e7b3077/src/provider.ts#L257)
 
 ___
 
@@ -431,7 +432,7 @@ Provider.getIdentifier
 
 #### Defined in
 
-[src/provider.ts:253](https://github.com/haqq-network/haqq-wallet-provider-sss-react-native/blob/1f46277/src/provider.ts#L253)
+[src/provider.ts:253](https://github.com/haqq-network/haqq-wallet-provider-sss-react-native/blob/e7b3077/src/provider.ts#L253)
 
 ___
 
@@ -461,6 +462,24 @@ Provider.getMaxListeners
 #### Defined in
 
 node_modules/@types/node/events.d.ts:525
+
+___
+
+### getMnemonicPhrase
+
+▸ **getMnemonicPhrase**(): `Promise`<`string`\>
+
+Get mnemonic phrase
+
+#### Returns
+
+`Promise`<`string`\>
+
+mnemonic
+
+#### Defined in
+
+[src/provider.ts:502](https://github.com/haqq-network/haqq-wallet-provider-sss-react-native/blob/e7b3077/src/provider.ts#L502)
 
 ___
 
@@ -508,7 +527,7 @@ ___
 
 #### Defined in
 
-[src/provider.ts:434](https://github.com/haqq-network/haqq-wallet-provider-sss-react-native/blob/1f46277/src/provider.ts#L434)
+[src/provider.ts:434](https://github.com/haqq-network/haqq-wallet-provider-sss-react-native/blob/e7b3077/src/provider.ts#L434)
 
 ___
 
@@ -1111,7 +1130,7 @@ Provider.signPersonalMessage
 
 #### Defined in
 
-[src/provider.ts:332](https://github.com/haqq-network/haqq-wallet-provider-sss-react-native/blob/1f46277/src/provider.ts#L332)
+[src/provider.ts:332](https://github.com/haqq-network/haqq-wallet-provider-sss-react-native/blob/e7b3077/src/provider.ts#L332)
 
 ___
 
@@ -1140,7 +1159,7 @@ Provider.signTransaction
 
 #### Defined in
 
-[src/provider.ts:291](https://github.com/haqq-network/haqq-wallet-provider-sss-react-native/blob/1f46277/src/provider.ts#L291)
+[src/provider.ts:291](https://github.com/haqq-network/haqq-wallet-provider-sss-react-native/blob/e7b3077/src/provider.ts#L291)
 
 ___
 
@@ -1170,7 +1189,7 @@ Provider.signTypedData
 
 #### Defined in
 
-[src/provider.ts:375](https://github.com/haqq-network/haqq-wallet-provider-sss-react-native/blob/1f46277/src/provider.ts#L375)
+[src/provider.ts:375](https://github.com/haqq-network/haqq-wallet-provider-sss-react-native/blob/e7b3077/src/provider.ts#L375)
 
 ___
 
@@ -1190,7 +1209,7 @@ ___
 
 #### Defined in
 
-[src/provider.ts:466](https://github.com/haqq-network/haqq-wallet-provider-sss-react-native/blob/1f46277/src/provider.ts#L466)
+[src/provider.ts:466](https://github.com/haqq-network/haqq-wallet-provider-sss-react-native/blob/e7b3077/src/provider.ts#L466)
 
 ___
 
@@ -1218,7 +1237,7 @@ Provider.updatePin
 
 #### Defined in
 
-[src/provider.ts:410](https://github.com/haqq-network/haqq-wallet-provider-sss-react-native/blob/1f46277/src/provider.ts#L410)
+[src/provider.ts:410](https://github.com/haqq-network/haqq-wallet-provider-sss-react-native/blob/e7b3077/src/provider.ts#L410)
 
 ___
 
@@ -1232,7 +1251,7 @@ ___
 
 #### Defined in
 
-[src/provider.ts:219](https://github.com/haqq-network/haqq-wallet-provider-sss-react-native/blob/1f46277/src/provider.ts#L219)
+[src/provider.ts:219](https://github.com/haqq-network/haqq-wallet-provider-sss-react-native/blob/e7b3077/src/provider.ts#L219)
 
 ___
 
@@ -1306,7 +1325,7 @@ ___
 
 #### Defined in
 
-[src/provider.ts:225](https://github.com/haqq-network/haqq-wallet-provider-sss-react-native/blob/1f46277/src/provider.ts#L225)
+[src/provider.ts:225](https://github.com/haqq-network/haqq-wallet-provider-sss-react-native/blob/e7b3077/src/provider.ts#L225)
 
 ___
 
@@ -1336,7 +1355,7 @@ Initialize SSS provider
 
 #### Defined in
 
-[src/provider.ts:53](https://github.com/haqq-network/haqq-wallet-provider-sss-react-native/blob/1f46277/src/provider.ts#L53)
+[src/provider.ts:53](https://github.com/haqq-network/haqq-wallet-provider-sss-react-native/blob/e7b3077/src/provider.ts#L53)
 
 ___
 
@@ -1656,4 +1675,4 @@ ___
 
 #### Defined in
 
-[src/provider.ts:235](https://github.com/haqq-network/haqq-wallet-provider-sss-react-native/blob/1f46277/src/provider.ts#L235)
+[src/provider.ts:235](https://github.com/haqq-network/haqq-wallet-provider-sss-react-native/blob/e7b3077/src/provider.ts#L235)

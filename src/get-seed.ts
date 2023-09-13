@@ -50,5 +50,5 @@ export async function getSeed(
 
   const mnemonic = await generateMnemonicFromEntropy(privKey.toBuffer());
   const seed = await seedFromMnemonic(mnemonic);
-  return {seed};
+  return {seed, mnemonic};
 }

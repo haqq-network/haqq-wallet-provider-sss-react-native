@@ -494,4 +494,21 @@ export class ProviderSSSReactNative
       await this._options.storage.removeItem(`haqq_${this._options.account}`);
     }
   }
+
+  /**
+   * Get mnemonic phrase
+   * @returns mnemonic
+   */
+  async getMnemonicPhrase(): Promise<string> {
+    const {mnemonic} = await getSeed(
+      this._options.account,
+      this._options.storage,
+      this._options.getPassword,
+    );
+    if (!mnemonic) {
+      throw new Error('seed_not_found');
+    }
+
+    return mnemonic;
+  }
 }
