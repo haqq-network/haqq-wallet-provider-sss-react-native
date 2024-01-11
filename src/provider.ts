@@ -4,12 +4,14 @@ import {
   compressPublicKey,
   hexStringToByteArray,
   joinSignature,
+  prepareHashedEip712Data,
   stringToUtf8Bytes,
   BytesLike,
   Provider,
   ProviderBaseOptions,
   ProviderInterface,
   TransactionRequest,
+  TypedData,
 } from '@haqq/provider-base';
 import {
   accountInfo,
@@ -374,8 +376,7 @@ export class ProviderSSSReactNative
 
   async signTypedData(
     hdPath: string,
-    domainHash: string,
-    valueHash: string,
+    typedData: TypedData
   ): Promise<string> {
     let response = '';
     try {
@@ -395,7 +396,8 @@ export class ProviderSSSReactNative
         throw new Error('private_key_not_found');
       }
 
-      const concatHash = hexConcat(['0x1901', domainHash, valueHash]);
+      const {domainSeparatorHex, hashStructMessageHex} = prepareHashedEip712Data(typedData);
+      const concatHash = hexConcat(['0x1901', domainSeparatorHex, hashStructMessageHex]);
       response = await sign(privateKey, concatHash);
       this.emit('signTypedData', true);
     } catch (e) {
