@@ -1,6 +1,6 @@
 {
   "name": "@haqq/provider-sss-react-native",
-  "version": "0.0.12",
+  "version": "0.0.13",
   "description": "Provider for react-native ledger",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -32,7 +32,7 @@
     "react-native-encrypted-storage": "*"
   },
   "devDependencies": {
-    "@haqq/provider-base": "^0.0.20",
+    "@haqq/provider-base": "^0.0.22",
     "@haqq/provider-web3-utils": "^0.0.12",
     "@haqq/shared-react-native": "^0.0.7",
     "@types/bn.js": "^5.1.1",

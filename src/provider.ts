@@ -12,6 +12,7 @@ import {
   ProviderInterface,
   TransactionRequest,
   TypedData,
+  calcTypedDataSignatureV,
 } from '@haqq/provider-base';
 import {
   accountInfo,
@@ -408,7 +409,7 @@ export class ProviderSSSReactNative
       }
     }
 
-    return response;
+    return calcTypedDataSignatureV(response);
   }
 
   async updatePin(pin: string) {
