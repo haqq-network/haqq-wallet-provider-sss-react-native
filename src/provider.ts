@@ -1,6 +1,7 @@
 import {hexConcat} from '@ethersproject/bytes';
 import {serialize, UnsignedTransaction} from '@ethersproject/transactions';
 import {
+  calcTypedDataSignatureV,
   compressPublicKey,
   hexStringToByteArray,
   joinSignature,
@@ -408,7 +409,7 @@ export class ProviderSSSReactNative
       }
     }
 
-    return response;
+    return calcTypedDataSignatureV(response);
   }
 
   async updatePin(pin: string) {
